@@ -17,7 +17,7 @@
                     <field name="server"/>
                     <field name="guild"/>
                     <field name="alignment"/>
-                    <field name="crew_skills_ids"/>
+<!--                    <field name="crew_skills_ids"/>-->
                     <field name="notes"/>
                 </tree>
             </field>
@@ -29,20 +29,29 @@
             <field name="model">swtor.character</field>
             <field name="arch" type="xml">
                 <form string="Character">
+                    <label for="name"/>
+                    <h1>
+                        <field name="name"/>
+                        <field name="faction_icon" widget='image' class="oe_avatar" style="margin-left:30px;"/>
+<!--                        <field name="faction_icon_html" widget='html' class="oe_avatar" style="margin-left:30px;"/>-->
+                    </h1>
                     <sheet>
+                        <field name="active" invisible="1"/>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
                         <group>
-                            <field name="name"/>
-                            <field name="faction"/>
-                            <field name="origin_story"/>
-                            <field name="class_name"/>
-                            <field name="level"/>
-                            <field name="race"/>
-                            <field name="gender"/>
-                        </group>
-                        <group>
-                            <field name="server"/>
-                            <field name="guild"/>
-                            <field name="alignment"/>
+                            <group>
+                                <field name="faction"/>
+                                <field name="origin_story"/>
+                                <field name="class_name"/>
+                                <field name="level"/>
+                                <field name="race"/>
+                                <field name="gender"/>
+                            </group>
+                            <group>
+                                <field name="server"/>
+                                <field name="guild"/>
+                                <field name="alignment"/>
+                            </group>
                         </group>
                         <notebook>
                             <page string="Crew Skills" name="crew_skills">
@@ -54,7 +63,7 @@
                                     </tree>
                                 </field>
                             </page>
-                            <page name="notes">
+                            <page string="Notes" name="notes">
                                 <field name="notes" widget="html"/>
                             </page>
                         </notebook>
@@ -79,7 +88,7 @@
                     <field name="server"/>
                     <field name="guild"/>
                     <field name="alignment"/>
-                    <field name="crew_skills_ids"/>
+<!--                    <field name="crew_skills_ids"/>-->
                 </search>
             </field>
         </record>

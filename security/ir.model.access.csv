@@ -1,2 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_swtor_armory_swtor_armory,swtor_armory.swtor_armory,model_swtor_armory_swtor_armory,base.group_user,1,1,1,1
+access_swtor_armory_swtor_character,swtor_armory.swtor.character,model_swtor_character,base.group_user,1,1,1,1
+access_swtor_armory_swtor_crew_skil,swtor_armory.swtor.crew.skill,model_swtor_crew_skill,base.group_user,1,1,1,1
+access_swtor_armory_swtor_character_crew_skill_relation,swtor_armory.swtor.character.crew.skill.relationl,model_swtor_character_crew_skill_relation,base.group_user,1,1,1,1

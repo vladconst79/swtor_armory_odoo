@@ -1,0 +1,19 @@
+<odoo>
+    <data>
+        <menuitem id="menu_swtor_root"
+                  name="SWTOR"
+                  sequence="1"
+                  web_icon="swtor_armory,static/src/icon/swtor_icon.png"/>
+
+        <menuitem id="menu_swtor_characters"
+                  name="Characters"
+                  parent="menu_swtor_root"
+                  action="action_character"/>
+
+        <record id="action_character" model="ir.actions.act_window">
+            <field name="name">Characters</field>
+            <field name="res_model">swtor.character</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

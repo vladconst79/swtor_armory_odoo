@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import logging
-from odoo import models, fields
+import base64
+from odoo import models, fields, api, _, tools
+from odoo.modules.module import get_resource_path
 from odoo.exceptions import ValidationError
 
 _logger = logging.getLogger(__name__)
@@ -12,6 +14,7 @@ class SWTORCharacter(models.Model):
     _description = 'SWTOR Character'
 
     name = fields.Char(string='Character Name', required=True)
+    active = fields.Boolean(string='Active', default=True)
     faction = fields.Selection([
         ('republic', 'Republic'),
         ('empire', 'Empire')
@@ -25,8 +28,7 @@ class SWTORCharacter(models.Model):
         ('sith_inquisitor', 'Sith Inquisitor'),
         ('bounty_hunter', 'Bounty Hunter'),
         ('imperial_agent', 'Imperial Agent'),
-        # Add more classes as needed
-    ], string='Class', required=True)
+    ], string='Origin Story', required=True)
     class_name = fields.Selection([
         ('guardian', 'Guardian'),
         ('sentinel', 'Sentinel'),
@@ -46,7 +48,15 @@ class SWTORCharacter(models.Model):
         ('powertech', 'Powertech'),
     ], string='Advanced Class', required=True)
     level = fields.Integer(string='Level')
-    race = fields.Char(string='Race')
+    race = fields.Selection([
+        ('human', 'Human'),
+        ('cyborg', 'Cyborg'),
+        ('chiss', 'Chiss'),
+        ('mirialan', 'Mirialan'),
+        ('twilek', 'Twi\'lek'),
+        ('zabrak', 'Zabrak'),
+        # Add more races as needed...
+    ], string='Race')
     gender = fields.Selection([
         ('male', 'Male'),
         ('female', 'Female')
@@ -65,8 +75,42 @@ class SWTORCharacter(models.Model):
         ('neutral', 'Neutral'),
         ('dark', 'Dark')
     ], string='Alignment')
-    crew_skills_ids = fields.Many2many('swtor.crew_skill', relation='character.crew_skill.rel', column1='character_id', column2='crew_skill_id', string='Crew Skills')
+    crew_skills_ids = fields.Many2many('swtor.character.crew.skill.relation', column1='character_id', column2='crew_skill_id', string='Crew Skills')
     notes = fields.Html(string='Notes')
+    faction_icon = fields.Binary(string='Faction Icon', compute='_compute_faction_icon')
+    # faction_icon = fields.Many2one('ir.attachment', string='Faction Icon', compute='_compute_faction_icon')
+    # faction_icon_html = fields.Html(string='Faction Icon HTML', compute='_compute_faction_icon_html')
+
+    @api.depends('faction')
+    def _compute_faction_icon(self):
+        for record in self:
+            if record.faction == 'empire':
+                image_path = get_resource_path('swtor_armory', 'static/src/icon/swtor_empire_icon.png')
+                with open(image_path, "rb") as image_file:
+                    record.faction_icon = tools.image_process(base64.b64encode(image_file.read()))
+            elif record.faction == 'republic':
+                image_path = get_resource_path('swtor_armory', 'static/src/icon/swtor_republic_icon.png')
+                with open(image_path, "rb") as image_file:
+                    record.faction_icon = tools.image_process(base64.b64encode(image_file.read()))
+
+    # @api.depends('faction')
+    # def _compute_faction_icon(self):
+    #     for record in self:
+    #         if record.faction:
+    #             if record.faction == 'empire':
+    #                 swtor_empire_icon = self.env["ir.attachment"].sudo().search([('name', '=', 'swtor_empire_icon')])
+    #                 if swtor_empire_icon:
+    #                     record.faction_icon = swtor_empire_icon.id
+    #             elif record.faction == 'republic':
+    #                 swtor_republic_icon = self.env["ir.attachment"].sudo().search([('name', '=', 'swtor_republic_icon')])
+    #                 if swtor_republic_icon:
+    #                     record.faction_icon = swtor_republic_icon.id
+    #
+    # @api.depends('faction_icon')
+    # def _compute_faction_icon_html(self):
+    #     for record in self:
+    #         if record.faction_icon:
+    #             record.faction_icon_html = '<img src="data:image/png;base64,%s" style="max-height: 60px;"/>' % record.faction_icon.datas.decode()
 
     @api.constrains('crew_skills_ids')
     def _check_crew_skills(self):

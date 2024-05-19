@@ -1,0 +1,98 @@
+<!-- character_views.xml -->
+<odoo>
+    <data>
+        <!-- Tree view -->
+        <record id="view_character_tree" model="ir.ui.view">
+            <field name="name">swtor.character.tree</field>
+            <field name="model">swtor.character</field>
+            <field name="arch" type="xml">
+                <tree string="Character">
+                    <field name="name"/>
+                    <field name="faction"/>
+                    <field name="origin_story"/>
+                    <field name="class_name"/>
+                    <field name="level"/>
+                    <field name="race"/>
+                    <field name="gender"/>
+                    <field name="server"/>
+                    <field name="guild"/>
+                    <field name="alignment"/>
+                    <field name="crew_skills_ids"/>
+                    <field name="notes"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form view -->
+        <record id="view_character_form" model="ir.ui.view">
+            <field name="name">swtor.character.form</field>
+            <field name="model">swtor.character</field>
+            <field name="arch" type="xml">
+                <form string="Character">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="faction"/>
+                            <field name="origin_story"/>
+                            <field name="class_name"/>
+                            <field name="level"/>
+                            <field name="race"/>
+                            <field name="gender"/>
+                        </group>
+                        <group>
+                            <field name="server"/>
+                            <field name="guild"/>
+                            <field name="alignment"/>
+                        </group>
+                        <notebook>
+                            <page string="Crew Skills" name="crew_skills">
+                                <field name="crew_skills_ids">
+                                    <tree editable="bottom">
+                                        <field name="crew_skill_id"/>
+                                        <field name="level"/>
+                                        <field name="crew_skill_id" string="Skill Type" widget="selection" attrs="{'readonly': [('crew_skill_id', '!=', False)]}"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page name="notes">
+                                <field name="notes" widget="html"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Search view -->
+        <record id="view_character_search" model="ir.ui.view">
+            <field name="name">swtor.character.search</field>
+            <field name="model">swtor.character</field>
+            <field name="arch" type="xml">
+                <search string="Character">
+                    <field name="name"/>
+                    <field name="faction"/>
+                    <field name="origin_story"/>
+                    <field name="class_name"/>
+                    <field name="level"/>
+                    <field name="race"/>
+                    <field name="gender"/>
+                    <field name="server"/>
+                    <field name="guild"/>
+                    <field name="alignment"/>
+                    <field name="crew_skills_ids"/>
+                </search>
+            </field>
+        </record>
+
+        <!-- Action to open the correct view -->
+        <record id="action_character" model="ir.actions.act_window">
+            <field name="name">Characters</field>
+            <field name="res_model">swtor.character</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_character_search"/>
+        </record>
+
+        <!-- Menu item to access the character views -->
+        <menuitem id="menu_character" name="Characters" action="action_character"/>
+    </data>
+</odoo>

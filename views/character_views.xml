@@ -59,7 +59,7 @@
                                     <tree editable="false" create="false">
                                         <field name="crew_skill_id"/>
                                         <field name="level" width="100"/>
-                                        <field name="progress" widget="progressbar" width="100"/>
+                                        <field name="progress" widget="progressbar" style="width:100px !important; max-width:100px !important;"/>
                                         <field name="skill_type" readonly="1" width="200"/>
                                     </tree>
                                 </field>

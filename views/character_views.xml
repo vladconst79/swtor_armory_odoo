@@ -58,9 +58,9 @@
                                 <field name="crew_skills_ids">
                                     <tree editable="false" create="false">
                                         <field name="crew_skill_id"/>
-                                        <field name="level" width="100"/>
-                                        <field name="progress" widget="progressbar" style="width:100px !important; max-width:100px !important;"/>
-                                        <field name="skill_type" readonly="1" width="200"/>
+                                        <field name="level"/>
+                                        <field name="progress"/>
+                                        <field name="skill_type" readonly="1"/>
                                     </tree>
                                 </field>
                                 <button name="%(action_crew_skill_wizard)d" string="Add Crew Skill" type="action" icon="fa-plus"/>

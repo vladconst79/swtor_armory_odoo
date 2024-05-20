@@ -8,9 +8,9 @@
         </record>
 
         <!-- Make the server admin group inherit the SWTOR Admin group -->
-        <record id="base.group_system" model="res.groups">
-            <field name="implied_ids" eval="[(4, ref('swtor_armory.group_swtor_admin'))]"/>
-        </record>
+<!--        <record id="base.group_system" model="res.groups">-->
+<!--            <field name="implied_ids" eval="[(4, ref('swtor_armory.group_swtor_admin'))]"/>-->
+<!--        </record>-->
 
         <!-- Record rule for swtor.character -->
         <record id="rule_swtor_character_own_only" model="ir.rule">

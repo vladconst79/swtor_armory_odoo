@@ -6,7 +6,7 @@
             <field name="name">swtor.crew.skill.tree</field>
             <field name="model">swtor.crew.skill</field>
             <field name="arch" type="xml">
-                <tree string="Crew Skill" create="false" edit="false" delete="false">
+                <tree string="Crew Skill">
                     <field name="name"/>
                     <field name="skill_type"/>
                 </tree>
@@ -18,7 +18,7 @@
             <field name="name">swtor.crew.skill.form</field>
             <field name="model">swtor.crew.skill</field>
             <field name="arch" type="xml">
-                <form string="Crew Skill" create="false" edit="false" delete="false">
+                <form string="Crew Skill">
                     <sheet>
                         <group>
                             <field name="name"/>

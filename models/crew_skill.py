@@ -12,7 +12,7 @@ class SWTORCrewSkill(models.Model):
     _description = 'SWTOR Crew Skill'
 
     name = fields.Char(string='Crew Skill Name', required=True)
-    level = fields.Integer(string='Skill Level')
+    # level = fields.Integer(string='Skill Level')
     skill_type = fields.Selection([
         ('crafting', 'Crafting'),
         ('gathering', 'Gathering'),
@@ -25,9 +25,16 @@ class CharacterCrewSkillRel(models.Model):
     _name = 'swtor.character.crew.skill.relation'
     _description = 'Character Crew Skill Relation'
 
-    character_id = fields.Many2one('swtor.character', ondelete='cascade')
-    crew_skill_id = fields.Many2one('swtor.crew.skill', ondelete='cascade')
-    level = fields.Integer(string='Skill Level')
+    display_name = fields.Char(compute="_compute_display_name", store=True, compute_sudo=True)
+    character_id = fields.Many2one('swtor.character', ondelete='cascade', required=True)
+    crew_skill_id = fields.Many2one('swtor.crew.skill', ondelete='cascade', required=True)
+    level = fields.Integer(string='Skill Level', default=1)
+    skill_type = fields.Selection(related='crew_skill_id.skill_type')
+
+    @api.depends('character_id.name', 'crew_skill_id.name')
+    def _compute_display_name(self):
+        for record in self:
+            record.display_name = f"{record.character_id.name} - {record.crew_skill_id.name}"
 
     @api.constrains('level')
     def _check_skill_levels(self):

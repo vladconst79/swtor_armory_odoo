@@ -1,0 +1,26 @@
+<odoo>
+    <record id="view_crew_skill_wizard_form" model="ir.ui.view">
+        <field name="name">swtor.crew.skill.wizard.form</field>
+        <field name="model">swtor.crew.skill.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Add Crew Skill">
+                <group>
+                    <field name="crew_skill_id"/>
+                    <field name="level"/>
+                </group>
+                <footer>
+                    <button name="confirm" string="Confirm" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_crew_skill_wizard" model="ir.actions.act_window">
+        <field name="name">Add Crew Skill</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">swtor.crew.skill.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

@@ -1,0 +1,58 @@
+<!-- crew_skill_views.xml -->
+<odoo>
+    <data>
+        <!-- Tree view -->
+        <record id="view_crew_skill_tree" model="ir.ui.view">
+            <field name="name">swtor.crew.skill.tree</field>
+            <field name="model">swtor.crew.skill</field>
+            <field name="arch" type="xml">
+                <tree string="Crew Skill" create="false" edit="false" delete="false">
+                    <field name="name"/>
+                    <field name="skill_type"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form view -->
+        <record id="view_crew_skill_form" model="ir.ui.view">
+            <field name="name">swtor.crew.skill.form</field>
+            <field name="model">swtor.crew.skill</field>
+            <field name="arch" type="xml">
+                <form string="Crew Skill" create="false" edit="false" delete="false">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="skill_type"/>
+                        </group>
+                        <notebook>
+                            <page string="Characters">
+                                <field name="character_ids">
+                                    <tree>
+                                        <field name="character_id"/>
+                                        <!-- Add other fields of the character model that you want to display -->
+                                    </tree>
+                                </field>
+                            </page>
+<!--                            <page string="Notes">-->
+<!--                                <field name="notes" widget="html"/>-->
+<!--                            </page>-->
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Search view -->
+        <record id="view_crew_skill_search" model="ir.ui.view">
+            <field name="name">swtor.crew.skill.search</field>
+            <field name="model">swtor.crew.skill</field>
+            <field name="arch" type="xml">
+                <search string="Crew Skill">
+                    <field name="name"/>
+                    <field name="skill_type"/>
+                </search>
+            </field>
+        </record>
+
+    </data>
+</odoo>

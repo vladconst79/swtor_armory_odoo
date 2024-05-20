@@ -14,6 +14,7 @@ class SWTORCharacter(models.Model):
     _description = 'SWTOR Character'
 
     name = fields.Char(string='Character Name', required=True)
+    display_name = fields.Char(string='Display Name', compute='_compute_display_name', store=True, compute_sudo=True)
     active = fields.Boolean(string='Active', default=True)
     faction = fields.Selection([
         ('republic', 'Republic'),
@@ -75,11 +76,17 @@ class SWTORCharacter(models.Model):
         ('neutral', 'Neutral'),
         ('dark', 'Dark')
     ], string='Alignment')
-    crew_skills_ids = fields.Many2many('swtor.character.crew.skill.relation', column1='character_id', column2='crew_skill_id', string='Crew Skills')
+    crew_skills_ids = fields.One2many('swtor.character.crew.skill.relation', 'character_id', string='Crew Skills')
+    # crew_skills_ids = fields.Many2many('swtor.character.crew.skill.relation', column1='character_id', column2='crew_skill_id', string='Crew Skills')
     notes = fields.Html(string='Notes')
     faction_icon = fields.Binary(string='Faction Icon', compute='_compute_faction_icon')
     # faction_icon = fields.Many2one('ir.attachment', string='Faction Icon', compute='_compute_faction_icon')
     # faction_icon_html = fields.Html(string='Faction Icon HTML', compute='_compute_faction_icon_html')
+
+    @api.depends('name', 'guild')
+    def _compute_display_name(self):
+        for record in self:
+            record.display_name = f"[{record.guild}] {record.name}" if record.guild else record.name
 
     @api.depends('faction')
     def _compute_faction_icon(self):

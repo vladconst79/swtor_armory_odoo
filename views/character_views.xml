@@ -7,7 +7,7 @@
             <field name="model">swtor.character</field>
             <field name="arch" type="xml">
                 <tree string="Character">
-                    <field name="name"/>
+                    <field name="display_name"/>
                     <field name="faction"/>
                     <field name="origin_story"/>
                     <field name="class_name"/>
@@ -29,15 +29,15 @@
             <field name="model">swtor.character</field>
             <field name="arch" type="xml">
                 <form string="Character">
-                    <label for="name"/>
-                    <h1>
-                        <field name="name"/>
-                        <field name="faction_icon" widget='image' class="oe_avatar" style="margin-left:30px;"/>
-<!--                        <field name="faction_icon_html" widget='html' class="oe_avatar" style="margin-left:30px;"/>-->
-                    </h1>
                     <sheet>
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                        <label for="name"/>
+                        <h1>
+                            <field name="name"/>
+                            <field name="faction_icon" widget='image' class="oe_avatar" style="margin-left:30px;"/>
+                            <!--                        <field name="faction_icon_html" widget='html' class="oe_avatar" style="margin-left:30px;"/>-->
+                        </h1>
                         <group>
                             <group>
                                 <field name="faction"/>
@@ -56,12 +56,13 @@
                         <notebook>
                             <page string="Crew Skills" name="crew_skills">
                                 <field name="crew_skills_ids">
-                                    <tree editable="bottom">
+                                    <tree editable="false" create="false">
                                         <field name="crew_skill_id"/>
                                         <field name="level"/>
-                                        <field name="crew_skill_id" string="Skill Type" widget="selection" attrs="{'readonly': [('crew_skill_id', '!=', False)]}"/>
+                                        <field name="skill_type" readonly="1"/>
                                     </tree>
                                 </field>
+                                <button name="%(action_crew_skill_wizard)d" string="Add Crew Skill" type="action" icon="fa-plus"/>
                             </page>
                             <page string="Notes" name="notes">
                                 <field name="notes" widget="html"/>

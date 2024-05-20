@@ -15,5 +15,19 @@
             <field name="res_model">swtor.character</field>
             <field name="view_mode">tree,form</field>
         </record>
+
+        <!-- Action to open the correct view -->
+        <record id="action_crew_skill" model="ir.actions.act_window">
+            <field name="name">Crew Skills</field>
+            <field name="res_model">swtor.crew.skill</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_crew_skill_search"/>
+        </record>
+
+        <!-- Menu item to access the crew skill views -->
+        <menuitem id="menu_crew_skill"
+                  name="Crew Skills"
+                  parent="menu_swtor_root"
+                  action="action_crew_skill"/>
     </data>
 </odoo>

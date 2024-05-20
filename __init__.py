@@ -15,7 +15,7 @@ def post_init_hook(cr, registry):
         'Biochem': 'crafting',
         'Cybertech': 'crafting',
         'Synthweaving': 'crafting',
-        'Slicing': 'mission',
+        'Slicing': 'gathering',
         'Scavenging': 'gathering',
         'Bioanalysis': 'gathering',
         'Archaeology': 'gathering',

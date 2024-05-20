@@ -29,8 +29,16 @@
         'views/character_views.xml',
         'views/crew_skill_views.xml',
         'views/operation_views.xml',
+        'views/class_name_views.xml',
         'views/menu.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            '/swtor_armory/static/src/js/class_name_widget.js',
+        ],
+        'web.assets_backend_prod_only': [
+        ],
+    },
     # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',

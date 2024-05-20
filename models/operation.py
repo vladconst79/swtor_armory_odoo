@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import logging
-from odoo import models, fields
+from dateutil.relativedelta import relativedelta, TU, MO
+from odoo import models, fields, api
+from odoo.exceptions import ValidationError
 
 _logger = logging.getLogger(__name__)
 
@@ -31,3 +33,51 @@ class SwtorOperationBoss(models.Model):
     name = fields.Char(string='Boss Name', required=True)
     sequence = fields.Integer('Sequence', default=10, store=True)
     operation_id = fields.Many2one('swtor.operation', string='Operation')
+
+
+class SWTOROperationLockout(models.Model):
+    _name = 'swtor.operation.lockout'
+    _description = 'SWTOR Operation Lockout'
+
+    name = fields.Char(string='Operation', store=True, compute='_compute_name')
+    week = fields.Date(string='Week Of', default=fields.Date.today)
+    character_id = fields.Many2one('swtor.character', string='Character', required=True)
+    boss_id = fields.Many2one('swtor.operation.boss', string='Boss', required=True)
+    operation_id = fields.Many2one('swtor.operation', string='Operation', required=True)
+    difficulty_id = fields.Many2one('swtor.operation.difficulty', string='Difficulty', required=True)
+    completion_rate = fields.Float(string='Completion Rate', compute='_compute_completion_rate', store=True)
+
+    @api.depends('operation_id', 'week', 'difficulty_id')
+    def _compute_name(self):
+        for record in self:
+            if record.operation_id and record.difficulty_id and record.week:
+                last_tuesday = record.week + relativedelta(weekday=TU(-1))
+                next_monday = record.week + relativedelta(weekday=MO(1))
+                record.name = f"{record.operation_id.name} - {record.difficulty_id.name} - {last_tuesday} - {next_monday}"
+            else:
+                record.name = False
+
+    @api.depends('boss_id', 'difficulty_id')
+    def _compute_completion_rate(self):
+        for record in self:
+            record.completion_rate = 0.0
+            if record.boss_id and record.difficulty_id:
+                previous_bosses = self.env["swtor.operation.boss"].search([
+                    ('sequence', '<', record.boss_id.sequence),
+                    ('operation_id', '=', record.boss_id.operation_id.id)
+                ])
+                record.completion_rate = (len(previous_bosses) + 1) / len(record.boss_id.operation_id.boss_ids) * 100
+            else:
+                record.completion_rate = 0.0
+
+    @api.constrains('boss_id', 'difficulty_id')
+    def _check_boss_difficulty(self):
+        for record in self:
+            if self.search_count([
+                ('character_id', '=', record.character_id.id),
+                ('boss_id', '=', record.boss_id.id),
+                ('difficulty_id', '=', record.difficulty_id.id),
+                ('week', '=', record.week),
+                ('id', '!=', record.id)
+            ]):
+                raise ValidationError("Character already has a lockout for this boss and difficulty this week.")

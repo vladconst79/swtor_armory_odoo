@@ -2,6 +2,7 @@
 
 import logging
 import base64
+from lxml import etree
 from odoo import models, fields, api, _, tools
 from odoo.modules.module import get_resource_path
 from odoo.exceptions import ValidationError
@@ -20,42 +21,21 @@ class SWTORCharacter(models.Model):
         ('republic', 'Republic'),
         ('empire', 'Empire')
     ], string='Faction', required=True)
-    origin_story = fields.Selection([
-        ('jedi_knight', 'Jedi Knight'),
-        ('jedi_consular', 'Jedi Consular'),
-        ('smuggler', 'Smuggler'),
-        ('trooper', 'Trooper'),
-        ('sith_warrior', 'Sith Warrior'),
-        ('sith_inquisitor', 'Sith Inquisitor'),
-        ('bounty_hunter', 'Bounty Hunter'),
-        ('imperial_agent', 'Imperial Agent'),
-    ], string='Origin Story', required=True)
-    class_name = fields.Selection([
-        ('guardian', 'Guardian'),
-        ('sentinel', 'Sentinel'),
-        ('sage', 'Sage'),
-        ('shadow', 'Shadow'),
-        ('gunslinger', 'Gunslinger'),
-        ('scoundrel', 'Scoundrel'),
-        ('commando', 'Commando'),
-        ('vanguard', 'Vanguard'),
-        ('juggernaut', 'Juggernaut'),
-        ('marauder', 'Marauder'),
-        ('sorcerer', 'Sorcerer'),
-        ('assassin', 'Assassin'),
-        ('sniper', 'Sniper'),
-        ('operative', 'Operative'),
-        ('mercenary', 'Mercenary'),
-        ('powertech', 'Powertech'),
-    ], string='Advanced Class', required=True)
+    origin_story_id = fields.Many2one('swtor.origin.story', string='Origin Story')
+    class_name_ids = fields.Many2many('swtor.class.name', string='Advanced Classes')
     level = fields.Integer(string='Level')
     race = fields.Selection([
         ('human', 'Human'),
         ('cyborg', 'Cyborg'),
+        ('pure_blood', 'Sith Pureblood'),
         ('chiss', 'Chiss'),
         ('mirialan', 'Mirialan'),
         ('twilek', 'Twi\'lek'),
         ('zabrak', 'Zabrak'),
+        ('rattataki', 'Rattataki'),
+        ('togruta', 'Togruta'),
+        ('cathar', 'Cathar'),
+        ('nautolan', 'Nautolan'),
         # Add more races as needed...
     ], string='Race')
     gender = fields.Selection([
@@ -77,47 +57,30 @@ class SWTORCharacter(models.Model):
         ('dark', 'Dark')
     ], string='Alignment')
     crew_skills_ids = fields.One2many('swtor.character.crew.skill.relation', 'character_id', string='Crew Skills')
-    # crew_skills_ids = fields.Many2many('swtor.character.crew.skill.relation', column1='character_id', column2='crew_skill_id', string='Crew Skills')
     notes = fields.Html(string='Notes')
     faction_icon = fields.Binary(string='Faction Icon', compute='_compute_faction_icon')
-    # faction_icon = fields.Many2one('ir.attachment', string='Faction Icon', compute='_compute_faction_icon')
-    # faction_icon_html = fields.Html(string='Faction Icon HTML', compute='_compute_faction_icon_html')
+    operation_lockouts_ids = fields.One2many('swtor.operation.lockout', 'character_id', string='Operation Lockouts')
 
     @api.depends('name', 'guild')
     def _compute_display_name(self):
         for record in self:
-            record.display_name = f"[{record.guild}] {record.name}" if record.guild else record.name
+            if record.name:
+                record.display_name = f"[{record.guild}] {record.name}" if record.guild else record.name
 
     @api.depends('faction')
     def _compute_faction_icon(self):
         for record in self:
-            if record.faction == 'empire':
-                image_path = get_resource_path('swtor_armory', 'static/src/icon/swtor_empire_icon.png')
-                with open(image_path, "rb") as image_file:
-                    record.faction_icon = tools.image_process(base64.b64encode(image_file.read()))
-            elif record.faction == 'republic':
-                image_path = get_resource_path('swtor_armory', 'static/src/icon/swtor_republic_icon.png')
-                with open(image_path, "rb") as image_file:
-                    record.faction_icon = tools.image_process(base64.b64encode(image_file.read()))
-
-    # @api.depends('faction')
-    # def _compute_faction_icon(self):
-    #     for record in self:
-    #         if record.faction:
-    #             if record.faction == 'empire':
-    #                 swtor_empire_icon = self.env["ir.attachment"].sudo().search([('name', '=', 'swtor_empire_icon')])
-    #                 if swtor_empire_icon:
-    #                     record.faction_icon = swtor_empire_icon.id
-    #             elif record.faction == 'republic':
-    #                 swtor_republic_icon = self.env["ir.attachment"].sudo().search([('name', '=', 'swtor_republic_icon')])
-    #                 if swtor_republic_icon:
-    #                     record.faction_icon = swtor_republic_icon.id
-    #
-    # @api.depends('faction_icon')
-    # def _compute_faction_icon_html(self):
-    #     for record in self:
-    #         if record.faction_icon:
-    #             record.faction_icon_html = '<img src="data:image/png;base64,%s" style="max-height: 60px;"/>' % record.faction_icon.datas.decode()
+            if record.faction:
+                if record.faction == 'empire':
+                    image_path = get_resource_path('swtor_armory', 'static/src/icon/swtor_empire_icon.png')
+                    with open(image_path, "rb") as image_file:
+                        record.faction_icon = tools.image_process(base64.b64encode(image_file.read()))
+                elif record.faction == 'republic':
+                    image_path = get_resource_path('swtor_armory', 'static/src/icon/swtor_republic_icon.png')
+                    with open(image_path, "rb") as image_file:
+                        record.faction_icon = tools.image_process(base64.b64encode(image_file.read()))
+            else:
+                record.faction_icon = False
 
     @api.constrains('crew_skills_ids')
     def _check_crew_skills(self):
@@ -127,3 +90,49 @@ class SWTORCharacter(models.Model):
             if len([skill for skill in record.crew_skills_ids if skill.skill_type == 'crafting']) > 1:
                 raise ValidationError("A character can have no more than 1 crafting skill.")
 
+    @api.constrains('class_name_ids')
+    def _check_class_names(self):
+        for record in self:
+            if len(record.class_name_ids) > 2:
+                raise ValidationError("A character can have no more than 2 class names.")
+            if any(class_name.power_type != record.origin_story_id.power_type for class_name in record.class_name_ids):
+                raise ValidationError("Class names must have the same power type as the origin story.")
+
+    @api.model
+    def fields_view_get(self, view_id=None, view_type='form', toolbar=False, submenu=False):
+        result = super().fields_view_get(view_id, view_id, view_type, toolbar, submenu)
+        doc = etree.XML(result['arch'])
+        node = doc.find(f".//field[@name='class_name_ids']")
+        if node is not None:
+            node.set('domain', "[('power_type', '=', origin_story_id.power_type)]")
+        result['arch'] = etree.tostring(doc, encoding='unicode')
+        return result
+
+class SWTOROriginStory(models.Model):
+    _name = 'swtor.origin.story'
+    _description = 'SWTOR Origin Story'
+
+    name = fields.Char(string='Origin Story', required=True)
+    power_type = fields.Selection([
+        ('force', 'Force'),
+        ('tech', 'Tech')
+    ], string='Power Type', required=True)
+    character_ids = fields.One2many('swtor.character', 'origin_story_id', string='Characters')
+
+
+class SWTORClassName(models.Model):
+    _name = 'swtor.class.name'
+    _description = 'SWTOR Class Name'
+
+    name = fields.Char(string='Class Name', required=True)
+    power_type = fields.Selection([
+        ('force', 'Force'),
+        ('tech', 'Tech')
+    ], string='Power Type', required=True)
+    all_character_ids = fields.Many2many('swtor.character', string="Characters")
+    class_icon = fields.Binary(string='Class Icon')
+
+    @api.depends('character_ids', 'second_character_ids')
+    def _compute_all_character_ids(self):
+        for record in self:
+            record.all_character_ids = record.character_ids | record.second_character_ids

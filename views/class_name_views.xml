@@ -1,0 +1,52 @@
+<odoo>
+    <data>
+        <!-- Tree view -->
+        <record id="view_class_name_tree" model="ir.ui.view">
+            <field name="name">swtor.class.name.tree</field>
+            <field name="model">swtor.class.name</field>
+            <field name="arch" type="xml">
+                <tree string="Class Name">
+                    <field name="name"/>
+                    <field name="power_type"/>
+                    <field name="class_icon" widget="image"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form view -->
+        <record id="view_class_name_form" model="ir.ui.view">
+            <field name="name">swtor.class.name.form</field>
+            <field name="model">swtor.class.name</field>
+            <field name="arch" type="xml">
+                <form string="Class Name">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="power_type"/>
+                            </group>
+                            <group>
+                                <field name="class_icon" widget="image"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="all_character_ids"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Search view -->
+        <record id="view_class_name_search" model="ir.ui.view">
+            <field name="name">swtor.class.name.search</field>
+            <field name="model">swtor.class.name</field>
+            <field name="arch" type="xml">
+                <search string="Class Name">
+                    <field name="name"/>
+                    <field name="power_type"/>
+                </search>
+            </field>
+        </record>
+    </data>
+</odoo>

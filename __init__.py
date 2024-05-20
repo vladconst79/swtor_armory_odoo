@@ -132,15 +132,51 @@ def post_init_hook(cr, registry):
             'name': operation_name,
             'short_name': short_name,
         })
-
         for difficulty in difficulties:
             difficulty_record = env['swtor.operation.difficulty'].search([('name', '=', difficulty)], limit=1)
             if difficulty_record:
                 operation_record.difficulty_ids = [(4, difficulty_record.id)]
-
         for sequence, boss in enumerate(bosses, start=1):
             env['swtor.operation.boss'].create({
                 'name': boss,
                 'operation_id': operation_record.id,
                 'sequence': sequence,
             })
+    origin_stories = {
+        'Jedi Knight': 'force',
+        'Jedi Consular': 'force',
+        'Smuggler': 'tech',
+        'Trooper': 'tech',
+        'Sith Warrior': 'force',
+        'Sith Inquisitor': 'force',
+        'Bounty Hunter': 'tech',
+        'Imperial Agent': 'tech',
+    }
+    for name, power_type in origin_stories.items():
+        env['swtor.origin.story'].create({
+            'name': name,
+            'power_type': power_type,
+        })
+    advanced_classes = {
+        'Jedi Guardian': 'force',
+        'Jedi Sentinel': 'force',
+        'Jedi Sage': 'force',
+        'Jedi Shadow': 'force',
+        'Gunslinger': 'tech',
+        'Scoundrel': 'tech',
+        'Commando': 'tech',
+        'Vanguard': 'tech',
+        'Sith Juggernaut': 'force',
+        'Sith Marauder': 'force',
+        'Sith Sorcerer': 'force',
+        'Sith Assassin': 'force',
+        'Sniper': 'tech',
+        'Operative': 'tech',
+        'Mercenary': 'tech',
+        'Powertech': 'tech',
+    }
+    for name, power_type in advanced_classes.items():
+        env['swtor.class.name'].create({
+            'name': name,
+            'power_type': power_type,
+        })

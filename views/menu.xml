@@ -59,5 +59,36 @@
                   name="Operation Difficulties"
                   parent="menu_operations"
                   action="action_operation_difficulty"/>
+
+        <!-- Menu item for Classes -->
+        <menuitem id="menu_classes"
+                  name="Classes"
+                  parent="menu_swtor_root"/>
+
+        <!-- Action to open the correct view for Origin Stories -->
+        <record id="action_origin_story" model="ir.actions.act_window">
+            <field name="name">Origin Stories</field>
+            <field name="res_model">swtor.origin.story</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Sub-menu item for Origin Stories -->
+        <menuitem id="menu_origin_story"
+                  name="Origin Stories"
+                  parent="menu_classes"
+                  action="action_origin_story"/>
+
+        <!-- Action to open the correct view for Classes -->
+        <record id="action_class_name" model="ir.actions.act_window">
+            <field name="name">Classes</field>
+            <field name="res_model">swtor.class.name</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Sub-menu item for Classes -->
+        <menuitem id="menu_class_name"
+                  name="Classes"
+                  parent="menu_classes"
+                  action="action_class_name"/>
     </data>
 </odoo>

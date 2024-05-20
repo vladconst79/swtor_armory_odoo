@@ -29,5 +29,35 @@
                   name="Crew Skills"
                   parent="menu_swtor_root"
                   action="action_crew_skill"/>
+        <!-- Action to open the correct view -->
+        <record id="action_operation" model="ir.actions.act_window">
+            <field name="name">Operations</field>
+            <field name="res_model">swtor.operation</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Action to open the correct view for operation difficulties -->
+        <record id="action_operation_difficulty" model="ir.actions.act_window">
+            <field name="name">Operation Difficulties</field>
+            <field name="res_model">swtor.operation.difficulty</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Menu item to access the operation views -->
+        <menuitem id="menu_operations"
+                  name="Operations"
+                  parent="menu_swtor_root"
+                  sequence="10"/>
+
+        <!-- Sub-menu item for current operations -->
+        <menuitem id="menu_operation"
+                  name="Current Operations"
+                  parent="menu_operations"
+                  action="action_operation"/>
+        <!-- Sub-menu item for operation difficulties -->
+        <menuitem id="menu_operation_difficulty"
+                  name="Operation Difficulties"
+                  parent="menu_operations"
+                  action="action_operation_difficulty"/>
     </data>
 </odoo>

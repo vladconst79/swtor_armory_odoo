@@ -21,12 +21,14 @@
 
     # always loaded
     'data': [
+        'security/security.xml',
         'security/ir.model.access.csv',
         'views/crew_skill_wizard.xml',
         'views/views.xml',
         'views/templates.xml',
         'views/character_views.xml',
         'views/crew_skill_views.xml',
+        'views/operation_views.xml',
         'views/menu.xml',
     ],
     # only loaded in demonstration mode

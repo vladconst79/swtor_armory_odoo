@@ -1,0 +1,14 @@
+<odoo>
+    <data noupdate="1">
+        <!-- SWTOR Admin group -->
+        <record id="group_swtor_admin" model="res.groups">
+            <field name="name">SWTOR Admin</field>
+            <field name="category_id" ref="base.module_category_hidden"/>
+        </record>
+
+        <!-- Make the server admin group inherit the SWTOR Admin group -->
+        <record id="base.group_system" model="res.groups">
+            <field name="implied_ids" eval="[(4, ref('swtor_armory.group_swtor_admin'))]"/>
+        </record>
+    </data>
+</odoo>

@@ -3,3 +3,9 @@ access_swtor_armory_swtor_character,swtor_armory.swtor.character,model_swtor_cha
 access_swtor_armory_swtor_crew_skil,swtor_armory.swtor.crew.skill,model_swtor_crew_skill,base.group_user,1,1,1,1
 access_swtor_armory_swtor_character_crew_skill_relation,swtor_armory.swtor.character.crew.skill.relation,model_swtor_character_crew_skill_relation,base.group_user,1,1,1,1
 access_swtor_armory_swtor_crew_skill_wizard,swtor_armory.swtor.crew.skill.wizard,model_swtor_crew_skill_wizard,base.group_user,1,1,1,1
+access_swtor_operation_user,swtor.operation,model_swtor_operation,base.group_user,1,0,0,0
+access_swtor_operation_admin,swtor.operation,model_swtor_operation,swtor_armory.group_swtor_admin,1,1,1,1
+access_swtor_operation_difficulty_user,swtor.operation.difficulty,model_swtor_operation_difficulty,base.group_user,1,0,0,0
+access_swtor_operation_difficulty_admin,swtor.operation.difficulty,model_swtor_operation_difficulty,swtor_armory.group_swtor_admin,1,1,1,1
+access_swtor_operation_boss_user,swtor.operation.boss,model_swtor_operation_boss,base.group_user,1,0,0,0
+access_swtor_operation_boss_admin,swtor.operation.boss,model_swtor_operation_boss,swtor_armory.group_swtor_admin,1,1,1,1

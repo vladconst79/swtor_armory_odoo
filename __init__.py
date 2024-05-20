@@ -8,19 +8,6 @@ from odoo.modules.module import get_module_resource
 
 def post_init_hook(cr, registry):
     env = api.Environment(cr, SUPERUSER_ID, {})
-#     icon_paths = {
-#         'swtor_empire_icon': get_module_resource('swtor_armory', 'static', 'src', 'icon', 'swtor_empire_icon.png'),
-#         'swtor_republic_icon': get_module_resource('swtor_armory', 'static', 'src', 'icon', 'swtor_republic_icon.png'),
-#     }
-#     for icon_name, icon_path in icon_paths.items():
-#         with open(icon_path, "rb") as image_file:
-#             encoded_image = base64.b64encode(image_file.read())
-#             env['ir.attachment'].create({
-#                 'name': icon_name,
-#                 'datas': encoded_image,
-#                 'res_model': 'swtor.character',
-#                 'mimetype': 'image/png',
-#             })
     crew_skills = {
         'Armormech': 'crafting',
         'ArmsTech': 'crafting',
@@ -43,3 +30,117 @@ def post_init_hook(cr, registry):
             'name': skill,
             'skill_type': skill_type,
         })
+    difficulties = {
+        "SM": "Story Mode",
+        "VM": "Veteran Mode",
+        "MM": "Master Mode",
+    }
+    for name, full_name in difficulties.items():
+        env['swtor.operation.difficulty'].create({
+            'name': name,
+            'full_name': full_name,
+        })
+    operations = [
+        ("Eternity Vault", "EV", ["SM", "VM"], [
+            "Ancient Pylons",
+            "Gharj",
+            "Annihilation Droid XRR-3",
+            "Infernal Council",
+            "Soa, the Infernal One"
+        ]),
+        ("Karagga's Palace", "KP", ["SM", "VM"], [
+            "Bonethrasher",
+            "Jarg & Sorno",
+            "Foreman Crusher",
+            "G4-B3 Heavy Fabricator",
+            "Karagga the Unyielding"
+        ]),
+        ("Explosive Conflict", "EC", ["SM", "VM", "MM"], [
+            "Zorn & Toth",
+            "Firebrand & Stormcaller",
+            "Colonel Vorgath",
+            "Warlord Kephess"
+        ]),
+        ("Terror From Beyond", "TFB", ["SM", "VM", "MM"], [
+            "Writhing Horror",
+            "Dread Guards",
+            "Operator IX",
+            "Kephess the Undying",
+            "Terror From Beyond"
+        ]),
+        ("Scum and Villainy", "SV", ["SM", "VM", "MM"], [
+            "Dash'roode",
+            "Titan 6",
+            "Thrasher",
+            "Operations Chief",
+            "Olok the Shadow",
+            "Cartel Warlords",
+            "Dread Master Styrak"
+        ]),
+        ("Dread Fortress", "DF", ["SM", "VM", "MM"], [
+            "Nefra, Who Bars the Way",
+            "Gate Commander Draxus",
+            "Grob'Thok, Who Feeds the Forge",
+            "Corruptor Zero",
+            "Dread Master Brontes"
+        ]),
+        ("Dread Palace", "DP", ["SM", "VM", "MM"], [
+            "Dread Master Bestia",
+            "Dread Master Tyrans",
+            "Dread Master Calphayus",
+            "Dread Master Raptus",
+            "Dread Council"
+        ]),
+        ("The Ravagers", "Rav", ["SM", "VM"], [
+            "Sparky",
+            "Bulo",
+            "Torque",
+            "Blaster & Master",
+            "Cortanni"
+        ]),
+        ("Temple of Sacrifice", "ToS", ["SM", "VM"], [
+            "Malaphar the Savage",
+            "Sword Squadron",
+            "The Underlurker",
+            "Revanite Commanders",
+            "Revan"
+        ]),
+        ("Gods From the Machine", "GftM", ["SM", "VM", "MM"], [
+            "Tyth, God of Rage",
+            "Aivela & Esne",
+            "Nahut, God of Rage",
+            "Scyva, Mother of Sorrows",
+            "Izax, The Ultimate Devourer"
+        ]),
+        ("The Nature of Progress", "Dxun", ["SM", "VM", "MM"], [
+            "The Pack Leader",
+            "Breach CI-004: Lights Out",
+            "Breacher CI-004: Fire Support",
+            "Mutant Trandoshan Squad",
+            "The Huntmaster",
+            "Apex Vanguard",
+        ]),
+        ("R-4 Anomaly", "R4", ["SM", "VM"], [
+            "IP-CPT",
+            "Watchdog",
+            "Lady Dominique",
+            "Lord Kanoth"
+        ])
+    ]
+    for operation_name, short_name, difficulties, bosses in operations:
+        operation_record = env['swtor.operation'].create({
+            'name': operation_name,
+            'short_name': short_name,
+        })
+
+        for difficulty in difficulties:
+            difficulty_record = env['swtor.operation.difficulty'].search([('name', '=', difficulty)], limit=1)
+            if difficulty_record:
+                operation_record.difficulty_ids = [(4, difficulty_record.id)]
+
+        for sequence, boss in enumerate(bosses, start=1):
+            env['swtor.operation.boss'].create({
+                'name': boss,
+                'operation_id': operation_record.id,
+                'sequence': sequence,
+            })

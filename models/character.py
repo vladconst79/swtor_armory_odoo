@@ -29,6 +29,7 @@ class SWTORCharacter(models.Model):
         ('cyborg', 'Cyborg'),
         ('pure_blood', 'Sith Pureblood'),
         ('chiss', 'Chiss'),
+        ('miraluka', 'Miraluka'),
         ('mirialan', 'Mirialan'),
         ('twilek', 'Twi\'lek'),
         ('zabrak', 'Zabrak'),

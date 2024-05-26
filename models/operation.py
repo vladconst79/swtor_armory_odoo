@@ -39,14 +39,16 @@ class SwtorOperationBoss(models.Model):
 class SWTOROperationLockout(models.Model):
     _name = 'swtor.operation.lockout'
     _description = 'SWTOR Operation Lockout'
+    _order = 'week desc'
 
-    name = fields.Char(string='Operation', store=True, compute='_compute_name')
+    name = fields.Char(string='Lockout', store=True, compute='_compute_name')
     week = fields.Date(string='Week Of', default=fields.Date.today)
     character_id = fields.Many2one('swtor.character', string='Character', required=True)
     boss_id = fields.Many2one('swtor.operation.boss', string='Boss', required=True)
     operation_id = fields.Many2one('swtor.operation', string='Operation', required=True)
     difficulty_id = fields.Many2one('swtor.operation.difficulty', string='Difficulty', required=True)
     completion_rate = fields.Float(string='Completion Rate', compute='_compute_completion_rate', store=True)
+    faction = fields.Selection(related='character_id.faction', store=True, depends=[('character_id.faction')])
 
     @api.depends('week')
     def _compute_after_last_tuesday(self):

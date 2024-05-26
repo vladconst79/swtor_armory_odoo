@@ -72,12 +72,13 @@
             <field name="name">swtor.operation.lockout.tree</field>
             <field name="model">swtor.operation.lockout</field>
             <field name="arch" type="xml">
-                <tree string="Operation Lockout">
+                <tree string="Operation Lockout" editable="top">
                     <field name="name"/>
-                    <field name="week"/>
-                    <field name="character_id"/>
-                    <field name="boss_id"/>
                     <field name="operation_id"/>
+                    <field name="character_id"/>
+                    <field name="faction"/>
+                    <field name="week"/>
+                    <field name="boss_id"/>
                     <field name="difficulty_id"/>
                     <field name="completion_rate"/>
                 </tree>

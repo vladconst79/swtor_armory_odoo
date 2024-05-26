@@ -47,7 +47,6 @@ class SWTOROperationLockout(models.Model):
     operation_id = fields.Many2one('swtor.operation', string='Operation', required=True)
     difficulty_id = fields.Many2one('swtor.operation.difficulty', string='Difficulty', required=True)
     completion_rate = fields.Float(string='Completion Rate', compute='_compute_completion_rate', store=True)
-    after_last_tuesday = fields.Boolean(compute='_compute_after_last_tuesday', string='After Last Tuesday')
 
     @api.depends('week')
     def _compute_after_last_tuesday(self):

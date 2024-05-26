@@ -46,9 +46,6 @@ class SWTOROperationLockout(models.Model):
     operation_id = fields.Many2one('swtor.operation', string='Operation', required=True)
     difficulty_id = fields.Many2one('swtor.operation.difficulty', string='Difficulty', required=True)
     completion_rate = fields.Float(string='Completion Rate', compute='_compute_completion_rate', store=True)
-    previous_tuesday = (fields.Datetime.now() + relativedelta(weekday=TU(-1))).strftime('%Y-%m-%d')
-    domain = [('week', '>=', previous_tuesday)]
-
 
     @api.depends('operation_id', 'week', 'difficulty_id')
     def _compute_name(self):

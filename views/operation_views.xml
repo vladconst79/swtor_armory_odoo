@@ -78,7 +78,7 @@
                     <field name="character_id"/>
                     <field name="operation_id"/>
                     <field name="difficulty_id"/>
-                    <field name="boss_id"/>
+                    <field name="boss_id" attrs="{'readonly': [('operation_id', '=', False), ('difficulty_id', '=', False)]}" domain="[('operation_id', '=', operation_id)]"/>
                     <field name="week"/>
                     <field name="completion_rate" widget="progressbar"/>
                 </tree>

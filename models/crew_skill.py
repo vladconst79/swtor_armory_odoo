@@ -47,6 +47,6 @@ class CharacterCrewSkillRel(models.Model):
     @api.constrains('level')
     def _check_skill_levels(self):
         for record in self:
-            if not 1 <= record.level <= self.max_level:
+            if not 1 <= record.level <= self.crew_skill_id.max_level:
                 raise ValidationError("Profession 1 Level must be between 1 and 700.")
 #

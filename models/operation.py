@@ -2,6 +2,7 @@
 
 import logging
 from dateutil.relativedelta import relativedelta, TU, MO
+from datetime import datetime
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
@@ -46,6 +47,13 @@ class SWTOROperationLockout(models.Model):
     operation_id = fields.Many2one('swtor.operation', string='Operation', required=True)
     difficulty_id = fields.Many2one('swtor.operation.difficulty', string='Difficulty', required=True)
     completion_rate = fields.Float(string='Completion Rate', compute='_compute_completion_rate', store=True)
+    after_last_tuesday = fields.Boolean(compute='_compute_after_last_tuesday', string='After Last Tuesday')
+
+    @api.depends('week')
+    def _compute_after_last_tuesday(self):
+        for record in self:
+            last_tuesday = datetime.now() + relativedelta(weekday=TU(-1))
+            record.after_last_tuesday = record.week and record.week >= last_tuesday.date()
 
     @api.depends('operation_id', 'week', 'difficulty_id')
     def _compute_name(self):

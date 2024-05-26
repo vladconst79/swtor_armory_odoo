@@ -69,7 +69,7 @@
                             </page>
                             <page string="Crew Skills" name="crew_skills">
                                 <field name="crew_skills_ids">
-                                    <tree editable="false" create="false">
+                                    <tree editable="false" create="false" default_order="skill_type">
                                         <field name="crew_skill_id"/>
                                         <field name="level"/>
                                         <field name="skill_type" readonly="1"/>

@@ -49,4 +49,7 @@ class CharacterCrewSkillRel(models.Model):
         for record in self:
             if not 1 <= record.level <= self.crew_skill_id.max_level:
                 raise ValidationError("Profession 1 Level must be between 1 and 700.")
-#
+
+
+# ToDO: verifica sa nu aiba mai mult de 3 crew skills
+

@@ -59,10 +59,10 @@
                                 <field name="operation_lockouts_ids">
                                     <tree editable="bottom">
                                         <field name="name"/>
-                                        <field name="operation_id"/>
-                                        <field name="difficulty_id"/>
-                                        <field name="boss_id" attrs="{'readonly': [('operation_id', '=', False), ('difficulty_id', '=', False)]}" domain="[('operation_id', '=', operation_id)]"/>
-                                        <field name="week"/>
+                                        <field name="operation_id" required="1"/>
+                                        <field name="difficulty_id" attrs="{'readonly': [('operation_id', '=', False)]}" domain="[('operation_ids', 'in', operation_id)]" required="1"/>
+                                        <field name="boss_id" attrs="{'readonly': [('operation_id', '=', False), ('difficulty_id', '=', False)]}" domain="[('operation_id', '=', operation_id)]" required="1"/>
+                                        <field name="week" required="1"/>
                                         <field name="completion_rate" widget="progressbar"/>
                                     </tree>
                                 </field>
@@ -76,7 +76,8 @@
                                         <field name="progress" widget="progressbar"/>
                                     </tree>
                                 </field>
-                                <button name="%(action_crew_skill_wizard)d" string="Add Crew Skill" type="action" icon="fa-plus"/>
+                                <field name="crew_skill_count" invisible="1"/>
+                                <button name="%(action_crew_skill_wizard)d" string="Add Crew Skill" type="action" icon="fa-plus" attrs="{invisible: [('crew_skill_count', '&gt;=', 3)]"/>
                             </page>
                             <page string="Notes" name="notes">
                                 <field name="notes" widget="html"/>

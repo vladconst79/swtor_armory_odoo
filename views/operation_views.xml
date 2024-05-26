@@ -75,11 +75,11 @@
                 <tree string="Operation Lockout" editable="top">
                     <field name="name"/>
                     <field name="faction"/>
-                    <field name="character_id"/>
+                    <field name="character_id" required="1"/>
                     <field name="operation_id"/>
-                    <field name="difficulty_id"/>
-                    <field name="boss_id" attrs="{'readonly': [('operation_id', '=', False), ('difficulty_id', '=', False)]}" domain="[('operation_id', '=', operation_id)]"/>
-                    <field name="week"/>
+                    <field name="difficulty_id" attrs="{'readonly': [('operation_id', '=', False)]}" domain="[('operation_ids', 'in', operation_id)]" required="1"/>
+                    <field name="boss_id" attrs="{'readonly': [('operation_id', '=', False), ('difficulty_id', '=', False)]}" domain="[('operation_id', '=', operation_id)]" required="1"/>
+                    <field name="week" required="1"/>
                     <field name="completion_rate" widget="progressbar"/>
                 </tree>
             </field>

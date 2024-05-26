@@ -66,6 +66,12 @@ class SWTORCharacter(models.Model):
     faction_icon = fields.Binary(string='Faction Icon', compute='_compute_faction_icon')
     operation_lockouts_ids = fields.One2many('swtor.operation.lockout', 'character_id', string='Operation Lockouts')
     valor_rank = fields.Integer(string='Valor Rank')
+    crew_skills_count = fields.Integer(string='Crew Skills Count', compute='_compute_crew_skills_count', store=True)
+
+    @api.depends('crew_skills_ids')
+    def _compute_crew_skills_count(self):
+        for record in self:
+            record.crew_skills_count = len(record.crew_skills_ids)
 
     @api.constrains('level')
     def _check_level(self):

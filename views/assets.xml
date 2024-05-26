@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="assets_backend" name="swtor_armory assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="module" src="/swtor_armory/static/src/js/character_search.js"></script>
+        </xpath>
+    </template>
+</odoo>

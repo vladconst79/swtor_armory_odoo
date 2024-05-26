@@ -5,16 +5,19 @@
                   sequence="1"
                   web_icon="swtor_armory,static/src/icon/swtor_icon.png"/>
 
-        <menuitem id="menu_swtor_characters"
-                  name="Characters"
-                  parent="menu_swtor_root"
-                  action="action_character"/>
-
         <record id="action_character" model="ir.actions.act_window">
             <field name="name">Characters</field>
             <field name="res_model">swtor.character</field>
             <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_character_search"/>
+<!--            <field name="search_view">character_search</field>-->
         </record>
+
+        <menuitem id="menu_swtor_characters"
+                  name="Characters"
+                  sequence="11"
+                  parent="menu_swtor_root"
+                  action="action_character"/>
 
         <!-- Action to open the correct view -->
         <record id="action_crew_skill" model="ir.actions.act_window">
@@ -27,6 +30,7 @@
         <!-- Menu item to access the crew skill views -->
         <menuitem id="menu_crew_skill"
                   name="Crew Skills"
+                  sequence="12"
                   parent="menu_swtor_root"
                   action="action_crew_skill"/>
         <!-- Action to open the correct view -->
@@ -47,22 +51,25 @@
         <menuitem id="menu_operations"
                   name="Operations"
                   parent="menu_swtor_root"
-                  sequence="10"/>
+                  sequence="13"/>
 
         <!-- Sub-menu item for current operations -->
         <menuitem id="menu_operation"
                   name="Current Operations"
+                  sequence="101"
                   parent="menu_operations"
                   action="action_operation"/>
         <!-- Sub-menu item for operation difficulties -->
         <menuitem id="menu_operation_difficulty"
                   name="Operation Difficulties"
+                  sequence="102"
                   parent="menu_operations"
                   action="action_operation_difficulty"/>
 
         <!-- Menu item for Classes -->
         <menuitem id="menu_classes"
                   name="Classes"
+                  sequence="14"
                   parent="menu_swtor_root"/>
 
         <!-- Action to open the correct view for Origin Stories -->
@@ -75,6 +82,7 @@
         <!-- Sub-menu item for Origin Stories -->
         <menuitem id="menu_origin_story"
                   name="Origin Stories"
+                  sequence="201"
                   parent="menu_classes"
                   action="action_origin_story"/>
 
@@ -88,6 +96,7 @@
         <!-- Sub-menu item for Classes -->
         <menuitem id="menu_class_name"
                   name="Classes"
+                  sequence="202"
                   parent="menu_classes"
                   action="action_class_name"/>
     </data>

@@ -1,6 +1,7 @@
 odoo.define('swtor_armory.ClassNameWidget', function(require) {
     "use strict";
 
+    var core = require('web.core');
     var fieldRegistry = require('web.field_registry');
     var FieldMany2ManyTags = require('web.relational_fields').FieldMany2ManyTags;
 

@@ -107,15 +107,15 @@
             </field>
         </record>
 
-        <!-- Action to open the correct view -->
-        <record id="action_character" model="ir.actions.act_window">
-            <field name="name">Characters</field>
-            <field name="res_model">swtor.character</field>
-            <field name="view_mode">tree,form</field>
-            <field name="search_view_id" ref="view_character_search"/>
-        </record>
+        <!--<record id="view_character_search" model="ir.ui.view">
+            <field name="name">character.search.view</field>
+            <field name="model">swtor.character</field>
+            <field name="arch" type="xml">
+                <search string="Character Search">
+                    &lt;!&ndash; other search view fields and filters &ndash;&gt;
+                </search>
+            </field>
+        </record>-->
 
-        <!-- Menu item to access the character views -->
-        <menuitem id="menu_character" name="Characters" action="action_character"/>
     </data>
 </odoo>

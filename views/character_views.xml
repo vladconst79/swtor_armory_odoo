@@ -51,20 +51,10 @@
                                 <field name="server"/>
                                 <field name="guild"/>
                                 <field name="alignment"/>
+                                <field name="valor_rank"/>
                             </group>
                         </group>
                         <notebook>
-                            <page string="Crew Skills" name="crew_skills">
-                                <field name="crew_skills_ids">
-                                    <tree editable="false" create="false">
-                                        <field name="crew_skill_id"/>
-                                        <field name="level"/>
-                                        <field name="skill_type" readonly="1"/>
-                                        <field name="progress" widget="progressbar"/>
-                                    </tree>
-                                </field>
-                                <button name="%(action_crew_skill_wizard)d" string="Add Crew Skill" type="action" icon="fa-plus"/>
-                            </page>
                             <page string="Operation Lockouts" name="operation_lockouts">
                                 <field name="operation_lockouts_ids">
                                     <tree editable="bottom">
@@ -76,6 +66,17 @@
                                         <field name="completion_rate" widget="progressbar"/>
                                     </tree>
                                 </field>
+                            </page>
+                            <page string="Crew Skills" name="crew_skills">
+                                <field name="crew_skills_ids">
+                                    <tree editable="false" create="false">
+                                        <field name="crew_skill_id"/>
+                                        <field name="level"/>
+                                        <field name="skill_type" readonly="1"/>
+                                        <field name="progress" widget="progressbar"/>
+                                    </tree>
+                                </field>
+                                <button name="%(action_crew_skill_wizard)d" string="Add Crew Skill" type="action" icon="fa-plus"/>
                             </page>
                             <page string="Notes" name="notes">
                                 <field name="notes" widget="html"/>

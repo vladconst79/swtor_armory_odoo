@@ -99,5 +99,22 @@
                   sequence="202"
                   parent="menu_classes"
                   action="action_class_name"/>
+        <!-- Action to open the tree view -->
+        <record id="action_operation_lockout" model="ir.actions.act_window">
+            <field name="name">Operation Lockouts</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">swtor.operation.lockout</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_operation_lockout_tree"/>
+            <field name="context">{'search_default_current_week': True}</field>
+        </record>
+
+        <!-- Menu item to access the tree view -->
+        <menuitem id="menu_operation_lockout"
+                  name="Operation Lockouts"
+                  parent="menu_operations"
+                  sequence="103"
+                  action="action_operation_lockout"/>
+
     </data>
 </odoo>

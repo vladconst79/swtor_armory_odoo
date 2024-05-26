@@ -13,6 +13,10 @@ _logger = logging.getLogger(__name__)
 class SWTORCharacter(models.Model):
     _name = 'swtor.character'
     _description = 'SWTOR Character'
+    _order = 'level desc, id asc'
+
+    _max_level = 80
+    _max_valor_rank = 100
 
     name = fields.Char(string='Character Name', required=True)
     display_name = fields.Char(string='Display Name', compute='_compute_display_name', store=True, compute_sudo=True)
@@ -61,6 +65,19 @@ class SWTORCharacter(models.Model):
     notes = fields.Html(string='Notes')
     faction_icon = fields.Binary(string='Faction Icon', compute='_compute_faction_icon')
     operation_lockouts_ids = fields.One2many('swtor.operation.lockout', 'character_id', string='Operation Lockouts')
+    valor_rank = fields.Integer(string='Valor Rank')
+
+    @api.constrains('level')
+    def _check_level(self):
+        for record in self:
+            if record.level < 1 or record.level > self._max_level:
+                raise ValidationError(f"Level must be between 1 and {self._max_level}.")
+
+    @api.constrains('valor_rank')
+    def _check_valor_rank(self):
+        for record in self:
+            if record.valor_rank < 1 or record.valor_rank > self._max_valor_rank:
+                raise ValidationError(f"Valor Rank must be between 1 and {self._max_valor_rank}.")
 
     @api.depends('name', 'guild')
     def _compute_display_name(self):

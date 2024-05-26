@@ -66,5 +66,62 @@
                 </form>
             </field>
         </record>
+
+        <!-- Tree view -->
+        <record id="view_operation_lockout_tree" model="ir.ui.view">
+            <field name="name">swtor.operation.lockout.tree</field>
+            <field name="model">swtor.operation.lockout</field>
+            <field name="arch" type="xml">
+                <tree string="Operation Lockout">
+                    <field name="name"/>
+                    <field name="week"/>
+                    <field name="character_id"/>
+                    <field name="boss_id"/>
+                    <field name="operation_id"/>
+                    <field name="difficulty_id"/>
+                    <field name="completion_rate"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form view -->
+        <record id="view_operation_lockout_form" model="ir.ui.view">
+            <field name="name">swtor.operation.lockout.form</field>
+            <field name="model">swtor.operation.lockout</field>
+            <field name="arch" type="xml">
+                <form string="Operation Lockout">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="week"/>
+                            <field name="character_id"/>
+                            <field name="boss_id"/>
+                            <field name="operation_id"/>
+                            <field name="difficulty_id"/>
+                            <field name="completion_rate"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Search view -->
+        <record id="view_operation_lockout_search" model="ir.ui.view">
+            <field name="name">swtor.operation.lockout.search</field>
+            <field name="model">swtor.operation.lockout</field>
+            <field name="arch" type="xml">
+                <search string="Operation Lockout">
+                    <field name="name"/>
+                    <field name="week"/>
+                    <field name="character_id"/>
+                    <field name="boss_id"/>
+                    <field name="operation_id"/>
+                    <field name="difficulty_id"/>
+                    <field name="completion_rate"/>
+                    <filter string="Current Week" name="current_week" domain="[('week', '>=', datetime.datetime.now() + relativedelta(weekday=relativedelta.TU(-1))).strftime('%Y-%m-%d'))]" help="Show only entries since last Tuesday"/>
+                </search>
+            </field>
+        </record>
+
     </data>
 </odoo>

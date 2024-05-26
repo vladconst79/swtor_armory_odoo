@@ -74,13 +74,13 @@
             <field name="arch" type="xml">
                 <tree string="Operation Lockout" editable="top">
                     <field name="name"/>
-                    <field name="operation_id"/>
-                    <field name="character_id"/>
                     <field name="faction"/>
-                    <field name="week"/>
-                    <field name="boss_id"/>
+                    <field name="character_id"/>
+                    <field name="operation_id"/>
                     <field name="difficulty_id"/>
-                    <field name="completion_rate"/>
+                    <field name="boss_id"/>
+                    <field name="week"/>
+                    <field name="completion_rate" widget="progressbar"/>
                 </tree>
             </field>
         </record>

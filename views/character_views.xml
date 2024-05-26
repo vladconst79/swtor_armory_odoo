@@ -78,7 +78,8 @@
                                 </field>
                                 <field name="crew_skills_count" invisible="1"/>
 <!--                                <button name="%(action_crew_skill_wizard)d" string="Add Crew Skill" type="action" icon="fa-plus" attrs="{invisible: [('crew_skills_count', '&gt;=', 3)]}"/>-->
-                                <button name="%(action_crew_skill_wizard)d" string="Add Crew Skill" type="action" icon="fa-plus"/>
+                                <button name="%(action_crew_skill_wizard)d" string="Add Crew Skill" type="action" icon="fa-plus" attrs="{'invisible': [('crew_skills_count', '>=', 3)]}"/>
+<!--                                <button name="%(action_crew_skill_wizard)d" string="Add Crew Skill" type="action" icon="fa-plus"/>-->
                             </page>
                             <page string="Notes" name="notes">
                                 <field name="notes" widget="html"/>

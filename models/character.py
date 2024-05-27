@@ -2,6 +2,7 @@
 
 import logging
 import base64
+import re
 from lxml import etree
 from odoo import models, fields, api, _, tools
 from odoo.modules.module import get_resource_path
@@ -205,3 +206,17 @@ class SwtorLoadout(models.Model):
             'target': 'current',
             'flags': {'form': {'action_buttons': True, 'options': {'mode': 'readonly'}}},
         }
+
+    @api.constrains('loadout_url')
+    def _check_loadout_url(self):
+        pattern = r'^https://parsely\.io/parser/combat-styles/[a-z]+/[A-Za-z0-9+/=]+$'
+        for record in self:
+            if record.loadout_url and not re.match(pattern, record.loadout_url):
+                # Check if the base64 part decodes into 8 figures between 1 and 3
+                base64_part = record.loadout_url.split('/')[-1]
+                try:
+                    decoded = base64.b64decode(base64_part).decode()
+                    if not re.match(r'^[1-3]{8}$', decoded):
+                        raise ValidationError("The base64 part of the loadout_url field must decode into 8 figures between 1 and 3.")
+                except Exception:
+                    raise ValidationError("The loadout_url field must be a valid Parsely link.")

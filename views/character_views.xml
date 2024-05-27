@@ -118,6 +118,26 @@
             </field>
         </record>
 
+        <!-- Loadout form view -->
+        <record id="view_loadout_form" model="ir.ui.view">
+            <field name="name">swtor.loadout.form</field>
+            <field name="model">swtor.loadout</field>
+            <field name="arch" type="xml">
+                <form string="Loadout">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="loadout_type"/>
+                            <field name="loadout_url"/>
+                        </group>
+                        <group>
+                            <iframe name="loadout_url" width="100%" height="500"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+
+
         <!--<record id="view_character_search" model="ir.ui.view">
             <field name="name">character.search.view</field>
             <field name="model">swtor.character</field>

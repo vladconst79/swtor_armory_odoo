@@ -184,14 +184,14 @@ class SwtorLoadout(models.Model):
     ], string='Loadout Type', required=True)
     # loadout_items_ids = fields.One2many('swtor.loadout.item', 'loadout_id', string='Loadout Items')
     loadout_url = fields.Char(string='Loadout URL', store=True)
-    loadout_ifram = fields.Html(string='Loadout Iframe', compute='_compute_loadout_iframe', store=True)
+    loadout_iframe = fields.Html(string='Loadout Iframe', compute='_compute_loadout_iframe', store=True)
     notes = fields.Html(string='Notes')
 
     @api.depends('loadout_url')
     def _compute_loadout_iframe(self):
         for record in self:
             if record.loadout_url:
-                record.loadout_ifram = f'<iframe src="{record.loadout_url}" width="100%" height="600"></iframe>'
+                record.loadout_iframe = f'<iframe src="{record.loadout_url}" width="100%" height="600"></iframe>'
 
     def open_record(self):
         self.ensure_one()

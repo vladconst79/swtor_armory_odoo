@@ -56,7 +56,7 @@ class SWTORCharacter(models.Model):
         ('the_leviathan', 'The Leviathan'),
         ('tulak_hord', 'Tulak Hord'),
         ('shae_vizla', 'Shae Vizla'),
-    ], string='Server')
+    ], string='Server', group_operator='count')
     guild = fields.Char(string='Guild')
     alignment = fields.Selection([
         ('light', 'Light'),

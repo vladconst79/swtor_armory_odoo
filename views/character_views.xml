@@ -82,6 +82,7 @@
                             <page string="Loadouts" name="loadouts">
                                 <field name="loadout_ids" context="{'tree_but_open': True}">
                                     <tree editable="bottom">
+                                        <field name="sequence" widget="handle"/>
                                         <field name="name"/>
                                         <button name="open_record"
                                                 string="Open"

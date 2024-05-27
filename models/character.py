@@ -177,6 +177,7 @@ class SwtorLoadout(models.Model):
 
     name = fields.Char(string='Loadout Name', required=True)
     character_id = fields.Many2one('swtor.character', string='Character', required=True)
+    sequence = fields.Integer('Sequence', default=10, store=True)
     loadout_type = fields.Selection([
         ('pve', 'PvE'),
         ('pvp', 'PvP')

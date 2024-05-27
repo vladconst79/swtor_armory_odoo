@@ -15,3 +15,4 @@ access_swtor_origin_story_admin,swtor.origin.story,model_swtor_origin_story,swto
 access_swtor_class_name_user,swtor.class.name,model_swtor_class_name,base.group_user,1,0,0,0
 access_swtor_class_name_admin,swtor.class.name,model_swtor_class_name,swtor_armory.group_swtor_admin,1,1,1,1
 access_swtor_operation_lockout,swtor.operation.lockout,model_swtor_operation_lockout,base.group_user,1,1,1,1
+access_swtor_loadout,swtor.operation.loadout,model_swtor_loadout,base.group_user,1,1,1,1

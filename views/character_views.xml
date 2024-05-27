@@ -77,9 +77,16 @@
                                     </tree>
                                 </field>
                                 <field name="crew_skills_count" invisible="1"/>
-<!--                                <button name="%(action_crew_skill_wizard)d" string="Add Crew Skill" type="action" icon="fa-plus" attrs="{invisible: [('crew_skills_count', '&gt;=', 3)]}"/>-->
                                 <button name="%(action_crew_skill_wizard)d" string="Add Crew Skill" type="action" icon="fa-plus" attrs="{'invisible': [('crew_skills_count', '>=', 3)]}"/>
-<!--                                <button name="%(action_crew_skill_wizard)d" string="Add Crew Skill" type="action" icon="fa-plus"/>-->
+                            </page>
+                            <page string="Loadouts" name="loadouts">
+                                <field name="loadouts_ids">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="loadout_type"/>
+                                        <field name="loadout_url" widget="url"/>
+                                    </tree>
+                                </field>
                             </page>
                             <page string="Notes" name="notes">
                                 <field name="notes" widget="html"/>

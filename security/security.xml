@@ -24,6 +24,18 @@
             <field name="domain_force">[('create_uid', '=', user.id)]</field>
         </record>
 
+        <!-- Record rule for swtor.loadout -->
+        <record id="rule_swtor_loadout_own_only" model="ir.rule">
+            <field name="name">SWTOR loadout: Own Only</field>
+            <field name="model_id" ref="model_swtor_loadout"/>
+            <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="domain_force">[('create_uid', '=', user.id)]</field>
+        </record>
+
         <record id="picking_warehouse_rule_admin" model="ir.rule">
             <field name="name">SWTOR Character: Admin</field>
             <field name="model_id" ref="model_swtor_character"/>

@@ -17,6 +17,7 @@ class SWTORCharacter(models.Model):
 
     _max_level = 80
     _max_valor_rank = 100
+    _max_loadouts = 10
 
     name = fields.Char(string='Character Name', required=True)
     display_name = fields.Char(string='Display Name', compute='_compute_display_name', store=True, compute_sudo=True)
@@ -67,6 +68,13 @@ class SWTORCharacter(models.Model):
     operation_lockouts_ids = fields.One2many('swtor.operation.lockout', 'character_id', string='Operation Lockouts')
     valor_rank = fields.Integer(string='Valor Rank')
     crew_skills_count = fields.Integer(string='Crew Skills Count', compute='_compute_crew_skills_count', store=True)
+    loadout_ids = fields.One2many('swtor.loadout', 'character_id', string='Loadouts')
+
+    @api.constrains('loadout_ids')
+    def _check_loadouts(self):
+        for record in self:
+            if len(record.loadout_ids) > self._max_loadouts:
+                raise ValidationError(f"A character can have no more than {self._max_loadouts} loadouts.")
 
     @api.depends('crew_skills_ids')
     def _compute_crew_skills_count(self):
@@ -160,3 +168,20 @@ class SWTORClassName(models.Model):
     def _compute_all_character_ids(self):
         for record in self:
             record.all_character_ids = record.character_ids | record.second_character_ids
+
+
+class SwtorLoadout(models.Model):
+    _name = 'swtor.loadout'
+    _description = 'SWTOR Loadout'
+    _order = 'name asc'
+
+    name = fields.Char(string='Loadout Name', required=True)
+    character_id = fields.Many2one('swtor.character', string='Character', required=True)
+    loadout_type = fields.Selection([
+        ('pve', 'PvE'),
+        ('pvp', 'PvP')
+    ], string='Loadout Type', required=True)
+    # loadout_items_ids = fields.One2many('swtor.loadout.item', 'loadout_id', string='Loadout Items')
+    loadout_url = fields.Char(string='Loadout URL', store=True)
+    notes = fields.Html(string='Notes')
+

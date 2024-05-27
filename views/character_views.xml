@@ -136,8 +136,12 @@
                             <field name="loadout_url"/>
                         </group>
                         <group>
-<!--                            <iframe name="loadout_url" t-att-src="record.loadout_url.raw_value" width="100%" height="500"/>-->
-                            <iframe t-att-src="record.loadout_url.raw_value" width="100%" height="500"/>
+                            <t t-if="record.loadout_url.raw_value">
+                                <iframe t-att-src="record.loadout_url.raw_value" width="100%" height="500"/>
+                            </t>
+                            <t t-else="">
+                                <p>No URL provided</p>
+                            </t>
                         </group>
                     </sheet>
                 </form>

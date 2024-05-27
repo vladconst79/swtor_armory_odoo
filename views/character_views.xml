@@ -138,7 +138,7 @@
                                             <field name="name"/>
                                         </h2>
 <!--                                        <img name="faction_icon" widget="image" class="oe_avatar oe_kanban_avatar_small" style="width: 50px; height: 50px; position: absolute; top: 0; right: 0;"/>-->
-                                        <img name="faction_icon" widget="image" tyle="width: 50px; height: 50px; position: absolute; top: 0; right: 0;"/>
+                                        <field name="faction_icon" widget="image" style="width: 50px; height: 50px; position: absolute; top: 0; right: 0;"/>
                                         <field name="class_name_ids" widget="many2many_tags" style="display: flex; flex-wrap: wrap; justify-content: space-between;"/>
                                     </div>
                                 </div>

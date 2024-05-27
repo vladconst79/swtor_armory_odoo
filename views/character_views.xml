@@ -136,8 +136,8 @@
                             <field name="loadout_url"/>
                         </group>
                         <group>
-                            <t t-if="record.loadout_url.raw_value">
-                                <iframe t-att-src="record.loadout_url.raw_value" width="100%" height="500"/>
+                            <t t-if="record.loadout_url">
+                                <iframe t-att-src="record.loadout_url" width="100%" height="500"/>
                             </t>
                             <t t-else="">
                                 <p>No URL provided</p>

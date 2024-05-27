@@ -136,6 +136,7 @@
                     </sheet>
                 </form>
             </field>
+        </record>
 
 
         <!--<record id="view_character_search" model="ir.ui.view">

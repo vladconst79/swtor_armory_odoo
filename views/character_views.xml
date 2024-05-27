@@ -137,13 +137,14 @@
                         </group>
                         <group>
                             <!-- Directly show the URL to debug -->
-                            <t t-if="record.loadout_url">
+                            <div>URL: <span t-esc="record.loadout_url"/></div>
+                            <!--<t t-if="record.loadout_url">
                                 <div>URL: <span t-esc="record.loadout_url"/></div>
                                 <iframe t-att-src="record.loadout_url" width="100%" height="500"/>
                             </t>
                             <t t-else="">
                                 <p>No URL provided</p>
-                            </t>
+                            </t>-->
                             <!--<iframe t-att-src="record.loadout_url" width="100%" height="500"/>-->
                             <!--<t t-if="record.loadout_url">
                                 <iframe t-att-src="record.loadout_url" width="100%" height="500"/>

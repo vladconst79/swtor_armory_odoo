@@ -173,7 +173,7 @@ class SWTORClassName(models.Model):
 class SwtorLoadout(models.Model):
     _name = 'swtor.loadout'
     _description = 'SWTOR Loadout'
-    _order = 'name asc'
+    _order = 'id asc'
 
     name = fields.Char(string='Loadout Name', required=True)
     character_id = fields.Many2one('swtor.character', string='Character', required=True)
@@ -185,3 +185,14 @@ class SwtorLoadout(models.Model):
     loadout_url = fields.Char(string='Loadout URL', store=True)
     notes = fields.Html(string='Notes')
 
+    def open_record(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': 'swtor.loadout',
+            'res_id': self.id,
+            'view_mode': 'form',
+            'view_id': self.env.ref('swtor_armory.view_loadout_form').id,
+            'target': 'current',
+            'flags': {'form': {'action_buttons': True, 'options': {'mode': 'readonly'}}},
+        }

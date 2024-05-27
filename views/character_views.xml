@@ -80,7 +80,7 @@
                                 <button name="%(action_crew_skill_wizard)d" string="Add Crew Skill" type="action" icon="fa-plus" attrs="{'invisible': [('crew_skills_count', '>=', 3)]}"/>
                             </page>
                             <page string="Loadouts" name="loadouts">
-                                <field name="loadout_ids">
+                                <field name="loadout_ids" context="{'tree_but_open': True}">
                                     <tree editable="bottom">
                                         <field name="name"/>
                                         <field name="loadout_type"/>

@@ -185,7 +185,7 @@ class SwtorLoadout(models.Model):
     ], string='Loadout Type', required=True)
     # loadout_items_ids = fields.One2many('swtor.loadout.item', 'loadout_id', string='Loadout Items')
     loadout_url = fields.Char(string='Loadout URL', store=True)
-    loadout_iframe = fields.Html(string='Loadout Iframe', compute='_compute_loadout_iframe', store=True, sanitize=False)
+    loadout_iframe = fields.Html(string='Parsely Loadout', compute='_compute_loadout_iframe', store=True, sanitize=False)
     notes = fields.Html(string='Notes')
 
     @api.depends('loadout_url')

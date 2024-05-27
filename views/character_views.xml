@@ -131,13 +131,12 @@
                 <kanban class="o_kanban_mobile" default_group_by="server">
                     <templates>
                         <t t-name="kanban-box">
-                            <div t-attf-class="oe_kanban_global_click">
+                            <div t-attf-class="oe_kanban_global_click #{record.alignment == 'dark' and 'bg-dark' or record.alignment == 'light' and 'bg-blue' or 'bg-white'}">
                                 <div class="o_kanban_record_top">
                                     <div class="o_kanban_details">
                                         <h2>
                                             <field name="name"/>
                                         </h2>
-<!--                                        <img name="faction_icon" widget="image" class="oe_avatar oe_kanban_avatar_small" style="width: 50px; height: 50px; position: absolute; top: 0; right: 0;"/>-->
                                         <field name="faction_icon" widget="image" style="width: 50px; height: 50px; position: absolute; top: 0; right: 0;"/>
                                         <field name="class_name_ids" widget="many2many_tags" style="display: flex; flex-wrap: wrap; justify-content: space-between;"/>
                                     </div>

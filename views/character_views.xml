@@ -136,7 +136,8 @@
                             <field name="loadout_url"/>
                         </group>
                         <group>
-                            <iframe name="loadout_url" t-att-src="record.loadout_url.raw_value" width="100%" height="500"/>
+<!--                            <iframe name="loadout_url" t-att-src="record.loadout_url.raw_value" width="100%" height="500"/>-->
+                            <iframe t-att-src="record.loadout_url.raw_value" width="100%" height="500"/>
                         </group>
                     </sheet>
                 </form>

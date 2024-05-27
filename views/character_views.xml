@@ -134,7 +134,7 @@
                 <kanban class="o_kanban_mobile" default_group_by="server">
                     <field name="server"/>
                     <field name="faction"/>
-                    <progressbar field="faction" color="{&quot;empire&quot;: &quot;danger&quot;, &quot;republic&quot;: &quot;info&quot;}"/>
+<!--                    <progressbar field="faction" color="{&quot;empire&quot;: &quot;danger&quot;, &quot;republic&quot;: &quot;info&quot;}"/>-->
                     <templates>
                         <t t-name="kanban-box">
                             <div t-attf-class="oe_kanban_global_click o_kanban_card_#{record.alignment}">

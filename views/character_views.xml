@@ -119,8 +119,6 @@
                     <field name="guild"/>
                     <field name="alignment"/>
 <!--                    <field name="crew_skills_ids"/>-->
-                    <filter string="Category" name="groupby_category" context="{'group_by': 'category_id'}"/>
-
                     <filter string="Server" name="groupby_server" context="{'group_by':'server'}"/>
                     <filter string="Faction" name="groupby_faction" context="{'group_by':'faction'}"/>
                     <filter string="Advanced Class" name="groupby_class" context="{'group_by':'class_name_ids'}"/>

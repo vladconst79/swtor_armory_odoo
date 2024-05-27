@@ -191,6 +191,7 @@ class SwtorLoadout(models.Model):
     def _compute_loadout_iframe(self):
         for record in self:
             if record.loadout_url:
+                print(f'<iframe src="{record.loadout_url}" width="100%" height="600"></iframe>')
                 record.loadout_iframe = f'<iframe src="{record.loadout_url}" width="100%" height="600"></iframe>'
 
     def open_record(self):

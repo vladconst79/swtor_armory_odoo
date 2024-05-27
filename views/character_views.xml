@@ -136,6 +136,7 @@
                             <field name="loadout_url"/>
                         </group>
                         <group>
+                            <label for="loadout_iframe"/>
                             <field name="loadout_iframe" nolabel="1"/>
                         </group>
                     </sheet>

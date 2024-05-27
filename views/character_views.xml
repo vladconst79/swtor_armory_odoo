@@ -136,23 +136,7 @@
                             <field name="loadout_url"/>
                         </group>
                         <group>
-                            <field name="loadout_iframe"/>
-                            <!-- Directly show the URL to debug -->
-<!--                            <div>URL: <span t-esc="record.loadout_url"/></div>-->
-                            <!--<t t-if="record.loadout_url">
-                                <div>URL: <span t-esc="record.loadout_url"/></div>
-                                <iframe t-att-src="record.loadout_url" width="100%" height="500"/>
-                            </t>
-                            <t t-else="">
-                                <p>No URL provided</p>
-                            </t>-->
-                            <!--<iframe t-att-src="record.loadout_url" width="100%" height="500"/>-->
-                            <!--<t t-if="record.loadout_url">
-                                <iframe t-att-src="record.loadout_url" width="100%" height="500"/>
-                            </t>
-                            <t t-else="">
-                                <p>No URL provided</p>
-                            </t>-->
+                            <field name="loadout_iframe" nolabel="1"/>
                         </group>
                     </sheet>
                 </form>

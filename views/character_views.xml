@@ -134,6 +134,7 @@
                     <filter string="Server" name="groupby_server" context="{'group_by':'server'}"/>
                     <filter string="Faction" name="groupby_faction" context="{'group_by':'faction'}"/>
                     <filter string="Advanced Class" name="groupby_class" context="{'group_by':'class_name_ids'}"/>
+                    <filter string="My Toons" name="my_toons" domain="[('create_uid', '=', uid)]"/>
                 </search>
             </field>
         </record>

@@ -29,6 +29,8 @@
                                 <field name="character_ids">
                                     <tree>
                                         <field name="character_id"/>
+                                        <field name="level"/>
+                                        <field name="progress"/>
                                         <!-- Add other fields of the character model that you want to display -->
                                     </tree>
                                 </field>

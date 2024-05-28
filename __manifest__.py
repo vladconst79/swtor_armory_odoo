@@ -39,6 +39,7 @@
     'assets': {
         'web.assets_backend': [
             # '/swtor_armory/static/src/js/class_name_widget.js',
+            # '/swtor_armory/static/src/js/rarity_color.js',
             'swtor_armory/static/src/css/swtor.css'
         ],
         'web.assets_backend_prod_only': [

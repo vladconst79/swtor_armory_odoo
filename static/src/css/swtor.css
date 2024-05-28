@@ -12,3 +12,22 @@
     background-color: #ecf0f1; /* Neutral background */
     color: black;
 }
+.rarity-common {
+    color: green;
+}
+
+.rarity-uncommon {
+    color: blue;
+}
+
+.rarity-rare {
+    color: purple;
+}
+
+.rarity-epic {
+    color: orange;
+}
+
+.rarity-legendary {
+    color: red;
+}

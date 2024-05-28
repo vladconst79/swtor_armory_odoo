@@ -134,10 +134,13 @@
                 <kanban class="o_kanban_mobile" default_group_by="server">
                     <field name="server"/>
                     <field name="faction"/>
-<!--                    <progressbar field="faction" color="{&quot;empire&quot;: &quot;danger&quot;, &quot;republic&quot;: &quot;info&quot;}"/>-->
+                    <field name="alignment"/>
+<!--                    <progressbar field="activity_state" colors='{"planned": "success", "today": "warning", "overdue": "danger"}'/>-->
+                    <progressbar field="faction" colors='{"empire": "danger", "republic": "info"}'/>
                     <templates>
                         <t t-name="kanban-box">
-                            <div t-attf-class="oe_kanban_global_click o_kanban_card_#{record.alignment}">
+                            <div class="oe_kanban_global_click">
+<!--                                <div t-attf-class="o_kanban_record_top o_kanban_card_#{record.alignment.raw_value}">-->
                                 <div class="o_kanban_record_top">
                                     <div class="o_kanban_details">
                                         <h2>

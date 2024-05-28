@@ -141,6 +141,33 @@ class SWTORCharacter(models.Model):
         result['arch'] = etree.tostring(doc, encoding='unicode')
         return result
 
+    @api.model
+    def get_view(self, view_id=None, view_type="form", **options):
+        res = super(SWTORCharacter, self).get_view(view_id, view_type, **options)
+        if view_type == 'kanban':
+            _logger.debug("Customizing kanban view for swtor.character")
+        # if view_type == 'search':
+        #     _logger.info("Customizing search view for tt_voice.picking")
+        #     # Fetch warehouses using search_read to get id and name
+        #     warehouses = self.env['tt_voice.warehouse'].search_read([], ['id', 'name'])
+        #
+        #     # Create separator and warehouse filters
+        #     separator = '<separator string="Warehouses"/>'
+        #     filters = ''.join(
+        #         '<filter string="%(name)s" name="warehouse_%(id)s" domain="[(\'warehouse_id\', \'=\', %(id)d)]"/>' % {
+        #             'name': warehouse['name'],
+        #             'id': warehouse['id']
+        #         }
+        #         for warehouse in warehouses
+        #     )
+        #
+        #     # Insert the filters at the end of the search view
+        #     arch = res['arch']
+        #     arch = arch.replace('</search>', separator + filters + '</search>')
+        #     res['arch'] = arch
+        return res
+
+
 class SWTOROriginStory(models.Model):
     _name = 'swtor.origin.story'
     _description = 'SWTOR Origin Story'

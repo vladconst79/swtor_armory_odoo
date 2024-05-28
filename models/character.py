@@ -20,7 +20,7 @@ class SWTORCharacter(models.Model):
     _max_valor_rank = 100
     _max_loadouts = 10
 
-    name = fields.Char(string='Character Name', required=True)
+    name = fields.Char(string='Character Name', required=True, copy=False, index=True)
     display_name = fields.Char(string='Display Name', compute='_compute_display_name', store=True, compute_sudo=True)
     active = fields.Boolean(string='Active', default=True)
     faction = fields.Selection([
@@ -248,3 +248,4 @@ class SwtorLoadout(models.Model):
                         raise ValidationError("The base64 part of the loadout_url field must decode into 8 figures between 1 and 3.")
                 except Exception:
                     raise ValidationError("The loadout_url field must be a valid Parsely link.")
+

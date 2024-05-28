@@ -93,6 +93,18 @@
                                     </tree>
                                 </field>
                             </page>
+                            <page string="Items" name="items">
+                                <field name="item_ids">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="rarity" optional="show"/>
+                                        <field name="binding" optional="show"/>
+                                        <field name="bound" optional="show"/>
+                                        <field name="cargo_hold" optional="show"/>
+                                        <field name="cargo_bay" optional="show"/>
+                                    </tree>
+                                </field>
+                            </page>
                             <page string="Notes" name="notes">
                                 <field name="notes" widget="html"/>
                             </page>

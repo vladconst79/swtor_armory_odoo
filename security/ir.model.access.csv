@@ -16,3 +16,4 @@ access_swtor_class_name_user,swtor.class.name,model_swtor_class_name,base.group_
 access_swtor_class_name_admin,swtor.class.name,model_swtor_class_name,swtor_armory.group_swtor_admin,1,1,1,1
 access_swtor_operation_lockout,swtor.operation.lockout,model_swtor_operation_lockout,base.group_user,1,1,1,1
 access_swtor_loadout,swtor.operation.loadout,model_swtor_loadout,base.group_user,1,1,1,1
+access_swtor_item,swtor.operation.item,model_swtor_item,base.group_user,1,1,1,1

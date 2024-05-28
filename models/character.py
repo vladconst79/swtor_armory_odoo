@@ -70,6 +70,7 @@ class SWTORCharacter(models.Model):
     valor_rank = fields.Integer(string='Valor Rank')
     crew_skills_count = fields.Integer(string='Crew Skills Count', compute='_compute_crew_skills_count', store=True)
     loadout_ids = fields.One2many('swtor.loadout', 'character_id', string='Loadouts')
+    item_ids = fields.Many2many('swtor.item', string='Items')
 
     @api.constrains('loadout_ids')
     def _check_loadouts(self):

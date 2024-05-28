@@ -1,0 +1,62 @@
+<odoo>
+    <data>
+        <record id="view_swtor_item_tree" model="ir.ui.view">
+            <field name="name">swtor.item.tree</field>
+            <field name="model">swtor.item</field>
+            <field name="arch" type="xml">
+                <tree string="SWTOR Items">
+                    <field name="name"/>
+                    <field name="rarity"/>
+                    <field name="binding"/>
+                    <field name="bound"/>
+                    <field name="cargo_hold"/>
+                    <field name="cargo_bay"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_swtor_item_form" model="ir.ui.view">
+            <field name="name">swtor.item.form</field>
+            <field name="model">swtor.item</field>
+            <field name="arch" type="xml">
+                <form string="Item">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="rarity"/>
+                            <field name="binding"/>
+                            <field name="bound"/>
+                            <field name="cargo_hold"/>
+                            <field name="cargo_bay"/>
+                        </group>
+                        <notebook>
+                            <page string="Characters">
+                                <field name="character_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_swtor_item_search" model="ir.ui.view">
+            <field name="name">swtor.item.search</field>
+            <field name="model">swtor.item</field>
+            <field name="arch" type="xml">
+                <search string="SWTOR Items">
+                    <field name="name"/>
+                    <field name="rarity"/>
+                    <field name="binding"/>
+                    <field name="bound"/>
+                    <field name="cargo_hold"/>
+                    <field name="cargo_bay"/>
+                    <field name="character_ids" string="Characters"/>
+                    <filter name="Bound" domain="[('bound', '=', True)]"/>
+                    <filter name="Unbound" domain="[('bound', '=', False)]"/>
+                    <filter string="Rarity" name="groupby_rarity" context="{'group_by':'rarity'}"/>
+                    <filter string="Binding" name="groupby_binding" context="{'group_by':'binding'}"/>
+                    <filter string="Character" name="groupby_character" context="{'group_by':'character_ids'}"/>
+                    <filter string="Cargo Hold" name="groupby_cargo_hold" context="{'group_by':'cargo_hold'}"/>
+                </search>
+            </field>
+        </record>
+    </data>
+</odoo>

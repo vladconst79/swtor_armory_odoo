@@ -30,7 +30,7 @@
                                     <tree>
                                         <field name="character_id"/>
                                         <field name="level"/>
-                                        <field name="progress"/>
+                                        <field name="progress" widget="progressbar"/>
                                         <!-- Add other fields of the character model that you want to display -->
                                     </tree>
                                 </field>

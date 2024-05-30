@@ -72,6 +72,12 @@ class SWTORCharacter(models.Model):
     loadout_ids = fields.One2many('swtor.loadout', 'character_id', string='Loadouts')
     item_ids = fields.Many2many('swtor.item', string='Items')
 
+    @api.model
+    def read_group(self, domain, fields, groupby, offset=0, limit=None, orderby=False, lazy=True):
+        if 'level' in fields:
+            fields.remove('level')
+        return super(SWTORCharacter, self).read_group(domain, fields, groupby, offset, limit, orderby, lazy)
+
     @api.constrains('loadout_ids')
     def _check_loadouts(self):
         for record in self:

@@ -127,6 +127,32 @@
                   sequence="12"
                   parent="menu_swtor_root"
                   action="action_swtor_item"/>
+        <!-- Action for Titles -->
+        <record id="action_title" model="ir.actions.act_window">
+            <field name="name">Titles</field>
+            <field name="res_model">swtor.title</field>
+            <field name="view_mode">tree,form</field>
+        </record>
 
+        <!-- Menu item for Titles -->
+        <menuitem id="menu_title"
+                  name="Titles"
+                  sequence="17"
+                  parent="menu_swtor_root"
+                  action="action_title"/>
+
+        <!-- Action for Mounts -->
+        <record id="action_vehicle" model="ir.actions.act_window">
+            <field name="name">Mounts</field>
+            <field name="res_model">swtor.vehicle</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Menu item for Mounts -->
+        <menuitem id="menu_vehicle"
+                  name="Mounts"
+                  sequence="19"
+                  parent="menu_swtor_root"
+                  action="action_vehicle"/>
     </data>
 </odoo>

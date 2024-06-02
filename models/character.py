@@ -71,6 +71,8 @@ class SWTORCharacter(models.Model):
     crew_skills_count = fields.Integer(string='Crew Skills Count', compute='_compute_crew_skills_count', store=True)
     loadout_ids = fields.One2many('swtor.loadout', 'character_id', string='Loadouts')
     item_ids = fields.Many2many('swtor.item', string='Items')
+    vehicle_ids = fields.Many2many('swtor.vehicle', string='Collected Mounts')
+    title_ids = fields.Many2many('swtor.title', string='Unlocked Titles')
 
     @api.model
     def read_group(self, domain, fields, groupby, offset=0, limit=None, orderby=False, lazy=True):

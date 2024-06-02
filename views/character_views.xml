@@ -105,6 +105,12 @@
                                     </tree>
                                 </field>
                             </page>
+                            <page string="Titles" name="titles">
+                                <field name="title_ids"/>
+                            </page>
+                            <page string="Mounts" name="mounts">
+                                <field name="vehicle_ids"/>
+                            </page>
                             <page string="Notes" name="notes">
                                 <field name="notes" widget="html"/>
                             </page>

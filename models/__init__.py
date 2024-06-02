@@ -5,3 +5,5 @@ from . import crew_skill
 from . import wizard
 from . import operation
 from . import item
+from . import title
+from . import vehicle

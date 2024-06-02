@@ -33,6 +33,8 @@
         'views/crew_skill_views.xml',
         'views/operation_views.xml',
         'views/class_name_views.xml',
+        'views/vehicle_views.xml',
+        'views/title_views.xml',
         'views/item_views.xml',
         'views/menu.xml',
     ],

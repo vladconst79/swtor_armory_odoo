@@ -1,0 +1,65 @@
+<odoo>
+    <data>
+        <record id="view_guild_tree" model="ir.ui.view">
+            <field name="name">swtor.guild.tree</field>
+            <field name="model">swtor.guild</field>
+            <field name="arch" type="xml">
+                <tree string="Guild">
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="guildmaster"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_guild_form" model="ir.ui.view">
+            <field name="name">swtor.guild.form</field>
+            <field name="model">swtor.guild</field>
+            <field name="arch" type="xml">
+                <form string="Guild">
+                    <sheet>
+                        <field name="active" invisible="1"/>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                        <label for="name"/>
+                        <h1>
+                            <field name="name"/>
+                            <field name="image" widget='image' class="oe_avatar" style="margin-left:30px;"/>
+                        </h1>
+                        <group>
+                            <field name="guildmaster"/>
+                            <field name="member_count"/>
+                        </group>
+                        <notebook>
+                            <page string="Characters" name="characters">
+                                <field name="character_ids" widget="one2many_list">
+<!--                                    <tree string="Characters">-->
+<!--                                        <field name="name"/>-->
+<!--                                        <field name="level"/>-->
+<!--                                        <field name="class"/>-->
+<!--                                        <field name="advanced_class"/>-->
+<!--                                        <field name="role"/>-->
+<!--                                    </tree>-->
+                                </field>
+                            </page>
+                            <page string="Description" name="desc">
+                                <field name="description"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_guild_search" model="ir.ui.view">
+            <field name="name">swtor.guild.search</field>
+            <field name="model">swtor.guild</field>
+            <field name="arch" type="xml">
+                <search string="Guild">
+                    <field name="name"/>
+                    <field name="guildmaster"/>
+                    <field name="character_ids" string="Characters"/>
+                    <filter name="groupby_guildmaster" string="Guildmaster" context="{'group_by': 'guildmaster'}"/>
+                    <filter name="groupby_characters" string="Characters" context="{'group_by': 'character_ids'}"/>
+                </search>
+            </field>
+        </record>
+    </data>
+</odoo>

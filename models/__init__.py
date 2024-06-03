@@ -7,3 +7,4 @@ from . import operation
 from . import item
 from . import title
 from . import vehicle
+from . import guild

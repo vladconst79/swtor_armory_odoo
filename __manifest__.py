@@ -37,6 +37,7 @@
         'views/vehicle_views.xml',
         'views/title_views.xml',
         'views/item_views.xml',
+        'views/guild_views.xml',
         'views/menu.xml',
     ],
     'assets': {

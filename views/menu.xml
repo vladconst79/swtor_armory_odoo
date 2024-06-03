@@ -13,10 +13,15 @@
             <field name="context">{'search_default_my_toons': True}</field>
         </record>
 
-        <menuitem id="menu_swtor_characters"
+        <menuitem id="menu_swtor_characters_submenu"
                   name="Characters"
                   sequence="11"
-                  parent="menu_swtor_root"
+                  parent="menu_swtor_root"/>
+
+        <menuitem id="menu_swtor_characters_menu"
+                  name="Characters"
+                  sequence="81"
+                  parent="menu_swtor_characters_submenu"
                   action="action_character"/>
 
         <!-- Action to open the correct view -->
@@ -154,5 +159,18 @@
                   sequence="19"
                   parent="menu_swtor_root"
                   action="action_vehicle"/>
+
+        <record id="action_guild" model="ir.actions.act_window">
+            <field name="name">Guilds</field>
+            <field name="res_model">swtor.guild</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_guild_search"/>
+        </record>
+
+        <menuitem id="menu_swtor_guilds"
+                  name="Guilds"
+                  sequence="84"
+                  parent="menu_swtor_characters_submenu"
+                  action="action_guild"/>
     </data>
 </odoo>

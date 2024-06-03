@@ -58,6 +58,7 @@ class SWTORCharacter(models.Model):
         ('shae_vizla', 'Shae Vizla'),
     ], string='Server', group_operator='count')
     guild = fields.Char(string='Guild')
+    guild_id = fields.Many2one('swtor.guild', string='Guild', copy=False, index=True)
     alignment = fields.Selection([
         ('light', 'Light'),
         ('neutral', 'Neutral'),
@@ -113,11 +114,11 @@ class SWTORCharacter(models.Model):
             if record.valor_rank < 1 or record.valor_rank > self._max_valor_rank:
                 raise ValidationError(f"Valor Rank must be between 1 and {self._max_valor_rank}.")
 
-    @api.depends('name', 'guild')
+    @api.depends('name', 'guild_id.name')
     def _compute_display_name(self):
         for record in self:
             if record.name:
-                record.display_name = f"[{record.guild}] {record.name}" if record.guild else record.name
+                record.display_name = f"[{record.guild_id.name}] {record.name}" if record.guild_id.name else record.name
 
     @api.depends('faction')
     def _compute_faction_icon(self):
@@ -185,6 +186,21 @@ class SWTORCharacter(models.Model):
         #     arch = arch.replace('</search>', separator + filters + '</search>')
         #     res['arch'] = arch
         return res
+
+    def set_guild_id(self):
+        for character in self:
+            # Check if the character has the 'guild' field set
+            if character.guild:
+                # Search for the guild in the 'swtor.guild' model
+                guild = self.env['swtor.guild'].search([('name', '=', character.guild)], limit=1)
+
+                # If the guild is found, set the 'guild_id' field of the character to the guild's id
+                if guild:
+                    character.guild_id = guild.id
+                else:
+                    # If the guild is not found, create a new guild with the same name and set the 'guild_id' field of the character to the new guild's id
+                    new_guild = self.env['swtor.guild'].create({'name': character.guild})
+                    character.guild_id = new_guild.id
 
 
 class SWTOROriginStory(models.Model):

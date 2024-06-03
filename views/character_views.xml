@@ -15,7 +15,7 @@
                     <field name="race"/>
                     <field name="gender"/>
                     <field name="server"/>
-                    <field name="guild"/>
+                    <field name="guild_id"/>
                     <field name="alignment"/>
 <!--                    <field name="crew_skills_ids" widget="many2many_tags"/>-->
 <!--                    <field name="notes"/>-->
@@ -49,7 +49,7 @@
                             </group>
                             <group>
                                 <field name="server"/>
-                                <field name="guild"/>
+                                <field name="guild_id"/>
                                 <field name="alignment"/>
                                 <field name="valor_rank"/>
                             </group>
@@ -141,11 +141,12 @@
                     <field name="race"/>
                     <field name="gender"/>
                     <field name="server"/>
-                    <field name="guild"/>
+                    <field name="guild_id"/>
                     <field name="alignment"/>
 <!--                    <field name="crew_skills_ids"/>-->
                     <filter string="Server" name="groupby_server" context="{'group_by':'server'}"/>
                     <filter string="Faction" name="groupby_faction" context="{'group_by':'faction'}"/>
+                    <filter string="Guild" name="groupby_guild" context="{'group_by':'guild_id'}"/>
                     <filter string="Advanced Class" name="groupby_class" context="{'group_by':'class_name_ids'}"/>
                     <filter string="My Toons" name="my_toons" domain="[('create_uid', '=', uid)]"/>
                 </search>

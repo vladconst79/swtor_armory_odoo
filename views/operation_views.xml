@@ -37,7 +37,7 @@
                                     <tree>
                                         <field name="name"/>
                                         <field name="type"/>
-                                        <field name="operation_difficulty_id" widget="many2many_tags"/>
+                                        <field name="operation_difficulty_id"/>
                                     </tree>
                                 </field>
                             </page>

@@ -33,12 +33,13 @@
                                 </field>
                             </page>
                             <page string="Titles" name="titles">
-                                <field name="title_ids"/>
-                                <tree>
-                                    <field name="name"/>
-                                    <field name="type"/>
-                                    <field name="operation_difficulty_id" widget="many2many_tags"/>
-                                </tree>
+                                <field name="title_ids">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="type"/>
+                                        <field name="operation_difficulty_id" widget="many2many_tags"/>
+                                    </tree>
+                                </field>
                             </page>
                             <page string="Mounts" name="mounts">
                                 <field name="vehicle_ids">

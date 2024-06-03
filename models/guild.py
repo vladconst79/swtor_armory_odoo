@@ -18,7 +18,7 @@ class SWTORGuild(models.Model):
     name = fields.Char(string='Name', required=True)
     active = fields.Boolean(string='Active', default=True)
     description = fields.Html(string='Description')
-    image = fields.Binary(string='Image')
+    image = fields.Binary(string='Logo')
     guildmaster = fields.Char(string='Guildmaster')
     character_ids = fields.One2many('swtor.character', 'guild_id', string='Characters')
     member_count = fields.Integer(string='Members', compute='_compute_member_count')

@@ -74,6 +74,7 @@ class SWTORCharacter(models.Model):
     item_ids = fields.Many2many('swtor.item', string='Items')
     vehicle_ids = fields.Many2many('swtor.vehicle', string='Collected Mounts')
     title_ids = fields.Many2many('swtor.title', string='Unlocked Titles')
+    guild_image = fields.Binary(related="guild_id.image")
 
     @api.model
     def create(self, vals):

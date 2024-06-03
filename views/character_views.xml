@@ -173,7 +173,7 @@
                                         <div class="o_kanban_content">
                                             <div class="d-flex align-items-center">
                                                 <t t-if="record.guild_image.raw_value">
-                                                    <field name="guild_image" widget="image" class="oe_avatar" style="width: 15px; height: 30px;"/>
+                                                    <field name="guild_image" widget="image" class="oe_avatar" style="width: 20px; height: 20px;"/>
                                                 </t>
                                                 <h2 class="ml-2" style="margin-left: 5px;">
                                                     <field name="name"/>

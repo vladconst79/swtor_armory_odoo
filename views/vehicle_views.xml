@@ -31,6 +31,7 @@
                                 <field name="source"/>
                                 <field name="icon_filename" invisible="True"/>
                                 <field name="icon_url"/>
+                                <field name="bind"/>
                             </group>
                             <group>
                                 <field name="operation_id" attrs="{'invisible': [('source', '!=', 'operation')]}"/>
@@ -58,6 +59,8 @@
                     <field name="source"/>
                     <field name="operation_id"/>
                     <field name="character_ids"/>
+                    <filter name="groupby_source" string="Source" context="{'group_by':'source'}"/>
+                    <filter name="groupby_character" string="Character" context="{'group_by':'character_ids'}"/>
                 </search>
             </field>
         </record>

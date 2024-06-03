@@ -35,6 +35,7 @@ class SWTORTitle(models.Model):
     ])
     operation_id = fields.Many2one('swtor.operation', string='Operation')
     operation_difficulty_id = fields.Many2one('swtor.operation.difficulty', string='Operation Difficulty')
+    character_ids = fields.Many2many('swtor.character', string='Characters', copy=False)
 
     # description = fields.Text(string='Description', translate=True)
     # icon = fields.Binary(string='Icon')
@@ -55,7 +56,7 @@ class SWTORTitle(models.Model):
     @api.model
     def create(self, vals):
         record = super().create(vals)
-        if record.type == 'character':
+        if record.type == 'legacy':
             characters = self.env['swtor.character'].search([('create_uid', '=', self.env.user.id)])
             for character in characters:
                 character.title_ids = [(4, record.id)]

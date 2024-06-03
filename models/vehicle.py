@@ -59,6 +59,10 @@ class SWTORVehicle(models.Model):
         record = super().create(vals)
         if 'icon_url' in vals and vals['icon_url']:
             record._set_icon_from_url(vals['icon_url'])
+        if record.bind == 'bind_on_legacy':
+            characters = self.env['swtor.character'].search([('create_uid', '=', self.env.user.id)])
+            for character in characters:
+                character.vehicle_ids = [(4, record.id)]
         return record
 
     def write(self, vals):
@@ -84,3 +88,4 @@ class SWTORVehicle(models.Model):
             })
         except Exception as e:
             _logger.error('Error while fetching image from URL: %s', e)
+

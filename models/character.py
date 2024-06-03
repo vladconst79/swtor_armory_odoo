@@ -75,6 +75,16 @@ class SWTORCharacter(models.Model):
     title_ids = fields.Many2many('swtor.title', string='Unlocked Titles')
 
     @api.model
+    def create(self, vals):
+        record = super().create(vals)
+        legacy_mounts = self.env["swtor.vehicle"].search([
+            ("bind", "=", "bind_on_legacy"),
+        ])
+        for mount in legacy_mounts:
+            record.vehicle_ids = [(4, mount.id)]
+        return record
+
+    @api.model
     def read_group(self, domain, fields, groupby, offset=0, limit=None, orderby=False, lazy=True):
         if 'level' in fields:
             fields.remove('level')

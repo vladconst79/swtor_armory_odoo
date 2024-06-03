@@ -109,7 +109,14 @@
                                 <field name="title_ids"/>
                             </page>
                             <page string="Mounts" name="mounts">
-                                <field name="vehicle_ids"/>
+                                <field name="vehicle_ids">
+                                    <tree>
+                                        <field name="icon" widget="image" class="vehicle_icon"/>
+                                        <field name="name"/>
+                                        <field name="source"/>
+<!--                                        <field name="name" widget="icon_name_widget" options="{'icon': 'icon', 'name': 'name'}"/>-->
+                                    </tree>
+                                </field>
                             </page>
                             <page string="Notes" name="notes">
                                 <field name="notes" widget="html"/>

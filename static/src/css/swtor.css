@@ -13,21 +13,30 @@
     color: black;
 }
 .rarity-common {
-    color: green;
+    color: lightgrey;
 }
 
 .rarity-uncommon {
-    color: blue;
+    color: green;
 }
 
 .rarity-rare {
-    color: purple;
+    color: blue;
 }
 
 .rarity-epic {
-    color: orange;
+    color: purple;
 }
 
 .rarity-legendary {
-    color: red;
+    color: yellow;
+}
+
+.rarity-legacy {
+    color: orange;
+}
+
+.vehicle_icon img {
+    max-height: 20px;
+    max-width: 20px;
 }

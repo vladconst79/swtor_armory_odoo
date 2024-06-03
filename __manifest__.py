@@ -26,6 +26,7 @@
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
+        # 'views/icon_name_widget_template.xml',
         'views/crew_skill_wizard.xml',
         'views/views.xml',
         'views/templates.xml',
@@ -43,6 +44,7 @@
             # '/swtor_armory/static/src/js/class_name_widget.js',
             # '/swtor_armory/static/src/js/rarity_color.js',
             'swtor_armory/static/src/css/swtor.css'
+            # 'swtor_armory/static/src/js/icon_name_widget.js',
         ],
         'web.assets_backend_prod_only': [
         ],

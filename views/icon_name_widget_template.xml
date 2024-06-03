@@ -1,0 +1,10 @@
+<odoo>
+    <template id="icon_name_widget_template" name="Icon Name Widget Template">
+        <t t-name="swtor_armory.IconNameWidget">
+            <div class="o_icon_name_widget">
+                <img t-att-src="iconUrl" class="o_icon"/>
+                <span class="o_name" t-esc="field.name"/>
+            </div>
+        </t>
+    </template>
+</odoo>

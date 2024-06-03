@@ -1,5 +1,61 @@
 <odoo>
     <data>
+        <record id="view_title_tree" model="ir.ui.view">
+            <field name="name">swtor.title.tree</field>
+            <field name="model">swtor.title</field>
+            <field name="arch" type="xml">
+                <tree string="Title">
+                    <field name="name"/>
+                    <field name="source"/>
+                    <field name="type"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_title_form" model="ir.ui.view">
+            <field name="name">swtor.title.form</field>
+            <field name="model">swtor.title</field>
+            <field name="arch" type="xml">
+                <form string="Mount">
+                    <sheet>
+                        <field name="active" invisible="1"/>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                        <label for="name"/>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                        <group>
+                            <group>
+                                <field name="source"/>
+                                <field name="type"/>
+                            </group>
+                            <group>
+                                <field name="operation_id" attrs="{'invisible': [('source', '!=', 'operation')]}"/>
+                                <field name="operation_difficulty_id" attrs="{'invisible' :[('source', '!=', 'operation')]}"/>
 
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Characters" name="characters">
+                                <field name="character_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_title_search" model="ir.ui.view">
+            <field name="name">swtor.title.search</field>
+            <field name="model">swtor.title</field>
+            <field name="arch" type="xml">
+                <search string="Title">
+                    <field name="name"/>
+                    <field name="source"/>
+                    <field name="operation_id"/>
+                    <field name="character_ids"/>
+                    <filter name="groupby_source" string="Source" context="{'group_by':'source'}"/>
+                    <filter name="groupby_character" string="Character" context="{'group_by':'character_ids'}"/>
+                </search>
+            </field>
+        </record>
     </data>
 </odoo>

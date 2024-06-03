@@ -18,8 +18,8 @@ class SwtorOperation(models.Model):
     short_name = fields.Char(string='Short Name', required=True)
     difficulty_ids = fields.Many2many('swtor.operation.difficulty', 'operation_difficulty_rel', 'operation_id', 'difficulty_id', string='Difficulties')
     boss_ids = fields.One2many('swtor.operation.boss', 'operation_id', string='Bosses')
-    title_ids = fields.One2many('swtor.operation.title', 'operation_id', string='Titles')
-    vehicle_ids = fields.One2many('swtor.operation.vehicle', 'operation_id', string='Vehicles')
+    title_ids = fields.One2many('swtor.title', 'operation_id', string='Titles')
+    vehicle_ids = fields.One2many('swtor.vehicle', 'operation_id', string='Mounts')
 
 
 class SwtorOperationDifficulty(models.Model):

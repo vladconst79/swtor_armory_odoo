@@ -16,6 +16,7 @@ class SWTORItem(models.Model):
     _max_cargo_bay = 8
 
     name = fields.Char(string="Name", required=True, index=True)
+    active = fields.Boolean(string='Active', default=True)
     character_ids = fields.Many2many("swtor.character", string="Characters", copy=False)
     rarity = fields.Selection(string="Rarity", selection=[
         ("common", "Common"),

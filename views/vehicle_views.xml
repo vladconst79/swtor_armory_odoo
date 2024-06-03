@@ -2,8 +2,8 @@
     <data>
         <!-- Tree view -->
         <record id="view_vehicle_tree" model="ir.ui.view">
-            <field name="name">vehicle.tree</field>
-            <field name="model">vehicle</field>
+            <field name="name">swtor.ehicle.tree</field>
+            <field name="model">swtor.vehicle</field>
             <field name="arch" type="xml">
                 <tree string="Vehicles">
                     <field name="name"/>
@@ -14,8 +14,8 @@
 
         <!-- Form view -->
         <record id="view_vehicle_form" model="ir.ui.view">
-            <field name="name">vehicle.form</field>
-            <field name="model">vehicle</field>
+            <field name="name">swtor.vehicle.form</field>
+            <field name="model">swtor.vehicle</field>
             <field name="arch" type="xml">
                 <form string="Mount">
                     <sheet>
@@ -33,8 +33,8 @@
                                 <field name="icon_url"/>
                             </group>
                             <group>
-                                <field name="operation_id" attrs="{'invisible':[('source','!=','operation')]"/>
-                                <field name="operation_difficulty_id" attrs="{'invisible':[('source','!=','operation')]"/>
+                                <field name="operation_id" attrs="{'invisible': [('source', '!=', 'operation')]}"/>
+                                <field name="operation_difficulty_id" attrs="{'invisible' :[('source', '!=', 'operation')]}"/>
 
                             </group>
                         </group>
@@ -50,8 +50,8 @@
 
         <!-- Search view -->
         <record id="view_vehicle_search" model="ir.ui.view">
-            <field name="name">vehicle.search</field>
-            <field name="model">vehicle</field>
+            <field name="name">swtor.vehicle.search</field>
+            <field name="model">swtor.vehicle</field>
             <field name="arch" type="xml">
                 <search string="Vehicles">
                     <field name="name"/>

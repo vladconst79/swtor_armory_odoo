@@ -14,6 +14,7 @@ class SwtorOperation(models.Model):
     _description = 'SWTOR Operation'
 
     name = fields.Char(string='Operation Name', required=True)
+    active = fields.Boolean(string='Active', default=True)
     short_name = fields.Char(string='Short Name', required=True)
     difficulty_ids = fields.Many2many('swtor.operation.difficulty', 'operation_difficulty_rel', 'operation_id', 'difficulty_id', string='Difficulties')
     boss_ids = fields.One2many('swtor.operation.boss', 'operation_id', string='Bosses')
@@ -23,6 +24,7 @@ class SwtorOperationDifficulty(models.Model):
     _description = 'SWTOR Operation Difficulty'
 
     name = fields.Char(string='Difficulty', required=True)
+    active = fields.Boolean(string='Active', default=True)
     full_name = fields.Char(string='Full Name', required=True)
     color = fields.Integer('Color Index', default=0)
     operation_ids = fields.Many2many('swtor.operation', 'operation_difficulty_rel', 'difficulty_id', 'operation_id', string='Operations')
@@ -32,6 +34,7 @@ class SwtorOperationBoss(models.Model):
     _description = 'SWTOR Operation Boss'
 
     name = fields.Char(string='Boss Name', required=True)
+    active = fields.Boolean(string='Active', default=True)
     sequence = fields.Integer('Sequence', default=10, store=True)
     operation_id = fields.Many2one('swtor.operation', string='Operation')
 
@@ -42,6 +45,7 @@ class SWTOROperationLockout(models.Model):
     _order = 'week desc'
 
     name = fields.Char(string='Lockout', store=True, compute='_compute_name')
+    active = fields.Boolean(string='Active', default=True)
     week = fields.Date(string='Week Of', default=fields.Date.today)
     character_id = fields.Many2one('swtor.character', string='Character', required=True)
     boss_id = fields.Many2one('swtor.operation.boss', string='Boss', required=True)

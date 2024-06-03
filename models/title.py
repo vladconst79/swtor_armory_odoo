@@ -15,6 +15,7 @@ class SWTORTitle(models.Model):
     _description = 'SWTOR Title'
 
     name = fields.Char(string='Title', required=True, translate=True)
+    active = fields.Boolean(string='Active', default=True)
     source = fields.Selection([
         ('operation', 'Operation'),
         ('flashpoint', 'Flashpoint'),

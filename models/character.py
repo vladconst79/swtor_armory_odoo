@@ -182,6 +182,7 @@ class SWTOROriginStory(models.Model):
     _description = 'SWTOR Origin Story'
 
     name = fields.Char(string='Origin Story', required=True)
+    active = fields.Boolean(string='Active', default=True)
     power_type = fields.Selection([
         ('force', 'Force'),
         ('tech', 'Tech')
@@ -194,6 +195,7 @@ class SWTORClassName(models.Model):
     _description = 'SWTOR Class Name'
 
     name = fields.Char(string='Class Name', required=True)
+    active = fields.Boolean(string='Active', default=True)
     power_type = fields.Selection([
         ('force', 'Force'),
         ('tech', 'Tech')
@@ -213,6 +215,7 @@ class SwtorLoadout(models.Model):
     _order = 'id asc'
 
     name = fields.Char(string='Loadout Name', required=True)
+    active = fields.Boolean(string='Active', default=True)
     character_id = fields.Many2one('swtor.character', string='Character', required=True)
     sequence = fields.Integer('Sequence', default=10, store=True)
     loadout_type = fields.Selection([

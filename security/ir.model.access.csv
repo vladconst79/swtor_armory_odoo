@@ -19,5 +19,5 @@ access_swtor_loadout,swtor.operation.loadout,model_swtor_loadout,base.group_user
 access_swtor_item,swtor.operation.item,model_swtor_item,base.group_user,1,1,1,1
 access_swtor_title_user,swtor.title,model_swtor_title,base.group_user,1,0,0,0
 access_swtor_title_admin,swtor.title,model_swtor_title,swtor_armory.group_swtor_admin,1,1,1,1
-access_swtor_mount_user,swtor.mount,model_swtor_mount,base.group_user,1,0,0,0
-access_swtor_mount_admin,swtor.mount,model_swtor_mount,swtor_armory.group_swtor_admin,1,1,1,1
+access_swtor_mount_user,swtor.vehicle,model_swtor_vehicle,base.group_user,1,0,0,0
+access_swtor_mount_admin,swtor.vehicle,model_swtor_vehicle,swtor_armory.group_swtor_admin,1,1,1,1

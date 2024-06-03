@@ -14,6 +14,7 @@ class SWTORCrewSkill(models.Model):
     max_level = 700
 
     name = fields.Char(string='Crew Skill Name', required=True)
+    active = fields.Boolean(string='Active', default=True)
     # level = fields.Integer(string='Skill Level')
     skill_type = fields.Selection([
         ('crafting', 'Crafting'),
@@ -28,6 +29,7 @@ class CharacterCrewSkillRel(models.Model):
     _description = 'Character Crew Skill Relation'
 
     display_name = fields.Char(compute="_compute_display_name", store=True, compute_sudo=True)
+    active = fields.Boolean(string='Active', default=True)
     character_id = fields.Many2one('swtor.character', ondelete='cascade', required=True)
     crew_skill_id = fields.Many2one('swtor.crew.skill', ondelete='cascade', required=True)
     level = fields.Integer(string='Skill Level', default=1)

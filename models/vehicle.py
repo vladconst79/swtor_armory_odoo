@@ -16,6 +16,7 @@ class SWTORVehicle(models.Model):
     _description = 'SWTOR Vehicle'
 
     name = fields.Char(string='Vehicle', required=True, translate=True)
+    active = fields.Boolean(string='Active', default=True)
     source = fields.Selection([
         ('operation', 'Operation'),
         ('flashpoint', 'Flashpoint'),
@@ -36,6 +37,7 @@ class SWTORVehicle(models.Model):
         ], string='Bind Type')
     operation_id = fields.Many2one('swtor.operation', string='Operation')
     operation_difficulty_id = fields.Many2one('swtor.operation.difficulty', string='Operation Difficulty')
+    character_ids = fields.Many2many('swtor.character', string='Characters', copy=False)
     # description = fields.Text(string='Description', translate=True)
     icon = fields.Binary(string='Icon')
     icon_filename = fields.Char(string='Icon Filename')

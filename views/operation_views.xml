@@ -32,6 +32,18 @@
                                     </tree>
                                 </field>
                             </page>
+                            <page string="Titles" name="titles">
+                                <field name="title_ids"/>
+                            </page>
+                            <page string="Mounts" name="mounts">
+                                <field name="vehicle_ids">
+                                    <tree>
+                                        <field name="icon" widget="image" class="vehicle_icon"/>
+                                        <field name="name"/>
+                                        <field name="source"/>
+                                    </tree>
+                                </field>
+                            </page>
                         </notebook>
                     </sheet>
                 </form>

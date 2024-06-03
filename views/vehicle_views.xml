@@ -6,6 +6,7 @@
             <field name="model">swtor.vehicle</field>
             <field name="arch" type="xml">
                 <tree string="Vehicles">
+                    <field name="icon" widget="image" class="vehicle_icon"/>
                     <field name="name"/>
                     <field name="source"/>
                 </tree>

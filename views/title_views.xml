@@ -30,7 +30,7 @@
                             </group>
                             <group>
                                 <field name="operation_id" attrs="{'invisible': [('source', '!=', 'operation')]}"/>
-                                <field name="operation_difficulty_id" attrs="{'invisible' :[('source', '!=', 'operation')]}"/>
+                                <field name="operation_difficulty_id" attrs="{'invisible' :[('source', '!=', 'operation')], 'readonly': [('operation_id', '=', False)]}" domain="[('operation_ids', 'in', operation_id)]"/>
 
                             </group>
                         </group>

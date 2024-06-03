@@ -34,13 +34,18 @@
                             </page>
                             <page string="Titles" name="titles">
                                 <field name="title_ids"/>
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="type"/>
+                                    <field name="operation_difficulty_id" widget="many2many_tags"/>
+                                </tree>
                             </page>
                             <page string="Mounts" name="mounts">
                                 <field name="vehicle_ids">
                                     <tree>
                                         <field name="icon" widget="image" class="vehicle_icon"/>
                                         <field name="name"/>
-                                        <field name="source"/>
+                                        <field name="bind"/>
                                     </tree>
                                 </field>
                             </page>

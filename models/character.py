@@ -73,18 +73,21 @@ class SWTORCharacter(models.Model):
     loadout_ids = fields.One2many('swtor.loadout', 'character_id', string='Loadouts')
     item_ids = fields.Many2many('swtor.item', string='Items')
     vehicle_ids = fields.Many2many('swtor.vehicle', string='Collected Mounts')
+    mounts = fields.Integer(string='Mounts', store=True, compute='_compute_mounts')
     title_ids = fields.Many2many('swtor.title', string='Unlocked Titles')
+    titles = fields.Integer(string='Titles', compute='_compute_titles', store=True)
     guild_image = fields.Binary(related="guild_id.image")
 
-    @api.model
-    def create(self, vals):
-        record = super().create(vals)
-        legacy_mounts = self.env["swtor.vehicle"].search([
-            ("bind", "=", "bind_on_legacy"),
-        ])
-        for mount in legacy_mounts:
-            record.vehicle_ids = [(4, mount.id)]
-        return record
+    @api.depends('title_ids')
+    def _compute_titles(self):
+        for record in self:
+            record.titles = len(record.title_ids)
+
+    @api.depends('vehicle_ids')
+    def _compute_mounts(self):
+        for record in self:
+            record.mounts = len(record.vehicle_ids)
+
 
     @api.model
     def read_group(self, domain, fields, groupby, offset=0, limit=None, orderby=False, lazy=True):

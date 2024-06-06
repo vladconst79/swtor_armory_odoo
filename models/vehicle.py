@@ -42,27 +42,12 @@ class SWTORVehicle(models.Model):
     icon = fields.Binary(string='Icon')
     icon_filename = fields.Char(string='Icon Filename')
     icon_url = fields.Char(string='Icon URL')
-    # is_hidden = fields.Boolean(string='Hidden')
-    # is_legacy = fields.Boolean(string='Legacy')
-    # is_pvp = fields.Boolean(string='PvP')
-    # is_pve = fields.Boolean(string='PvE')
-    # is_space = fields.Boolean(string='Space')
-    # is_cartel = fields.Boolean(string='Cartel Market')
-    # is_reputation = fields.Boolean(string='Reputation')
-    # is_crafting = fields.Boolean(string='Crafting')
-    # is_event = fields.Boolean(string='Event')
-    # is_promotion = fields.Boolean(string='Promotion')
-    # is_subscription = fields.Boolean(string='Subscription')
 
     @api.model
     def create(self, vals):
         record = super().create(vals)
         if 'icon_url' in vals and vals['icon_url']:
             record._set_icon_from_url(vals['icon_url'])
-        if record.bind == 'bind_on_legacy':
-            characters = self.env['swtor.character'].search([('create_uid', '=', self.env.user.id)])
-            for character in characters:
-                character.vehicle_ids = [(4, record.id)]
         return record
 
     def write(self, vals):

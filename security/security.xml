@@ -76,7 +76,7 @@
             <field name="name">SWTOR Character: Admin</field>
             <field name="model_id" ref="model_swtor_character"/>
             <field name="domain_force">[(1,'=',1)]</field>
-            <field name="groups" eval="[(4, ref('swtor_armory.group_swtor_admin'))]"/>
+            <field name="groups" eval="[(4, ref('group_swtor_admin'))]"/>
         </record>
     </data>
 </odoo>

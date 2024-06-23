@@ -15,7 +15,7 @@
                     <field name="race"/>
                     <field name="gender"/>
                     <field name="server"/>
-                    <field name="guild_image" widget="image" class="vehicle_icon" style="width: 30px; height: 30px;"/>
+                    <field name="guild_image" widget="image" class="vehicle_icon"/>
                     <field name="guild_id"/>
                     <field name="alignment"/>
 <!--                    <field name="crew_skills_ids" widget="many2many_tags"/>-->

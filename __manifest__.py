@@ -48,8 +48,8 @@
             # '/swtor_armory/static/src/js/rarity_color.js',
             'swtor_armory/static/src/css/swtor.css'
             # 'swtor_armory/static/src/js/icon_name_widget.js',
-            'swtor_armory/static/src/js/role_icon_widget.js',
-            'swtor_armory/static/src/xml/role_icon_widget.xml',
+            # 'swtor_armory/static/src/js/role_icon_widget.js',
+            # 'swtor_armory/static/src/xml/role_icon_widget.xml',
         ],
         'web.assets_backend_prod_only': [
         ],

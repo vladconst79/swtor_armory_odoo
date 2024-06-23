@@ -252,16 +252,16 @@ class SWTORRole(models.Model):
     @api.depends('name')
     def _compute_role_icon(self):
         for record in self:
-            if record.faction:
-                if record.nema == 'Tank':
+            if record.name:
+                if record.name == 'Tank':
                     image_path = get_resource_path('swtor_armory', 'static/src/icon/role-tank.png')
                     with open(image_path, "rb") as image_file:
                         record.icon = tools.image_process(base64.b64encode(image_file.read()))
-                elif record.faction == 'Healer':
+                elif record.name == 'Healer':
                     image_path = get_resource_path('swtor_armory', 'static/src/icon/role-heals.png')
                     with open(image_path, "rb") as image_file:
                         record.icon = tools.image_process(base64.b64encode(image_file.read()))
-                elif record.faction == 'DPS':
+                elif record.name == 'DPS':
                     image_path = get_resource_path('swtor_armory', 'static/src/icon/role-dps.png')
                     with open(image_path, "rb") as image_file:
                         record.icon = tools.image_process(base64.b64encode(image_file.read()))

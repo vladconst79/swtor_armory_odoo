@@ -8,7 +8,7 @@
                 <tree string="Role">
                     <field name="name"/>
                     <field name="color" widget="color_picker"/>
-                    <field name="role_icon" widget="image"/>
+                    <field name="icon" widget="image"/>
                 </tree>
             </field>
         </record>
@@ -26,7 +26,7 @@
                                 <field name="color" widget="color_picker"/>
                             </group>
                             <group>
-                                <field name="role_icon" widget="image"/>
+                                <field name="icon" widget="image"/>
                             </group>
                         </group>
                     </sheet>

@@ -36,7 +36,7 @@
                                 </field>
                             </page>
                             <page string="Related Crew Skills">
-<!--                                <field name="related_crew_skill_ids"/>-->
+                                <field name="related_crew_skill_ids"/>
                             </page>
                         </notebook>
                     </sheet>

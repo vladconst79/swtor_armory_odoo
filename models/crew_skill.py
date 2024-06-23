@@ -22,6 +22,8 @@ class SWTORCrewSkill(models.Model):
         ('mission', 'Mission')
     ], string='Skill Type', required=True)
     character_ids = fields.One2many('swtor.character.crew.skill.relation', 'crew_skill_id', string='Characters')
+    related_crew_skill_ids = fields.Many2many('swtor.crew.skill', 'swtor_crew_skill_related_rel', 'crew_skill_id',
+                                              'related_crew_skill_id', string='Related Crew Skills')
 
 
 class CharacterCrewSkillRel(models.Model):

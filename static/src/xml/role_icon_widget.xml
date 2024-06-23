@@ -1,0 +1,8 @@
+<!-- static/src/xml/role_icon_widget.xml -->
+<t t-name="swtor_armory.RoleIconWidgetTemplate">
+    <div class="o_role_icons">
+        <t t-foreach="roleIcons" t-as="icon">
+            <img t-att-src="icon" class="o_role_icon"/>
+        </t>
+    </div>
+</t>

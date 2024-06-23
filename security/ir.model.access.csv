@@ -23,3 +23,5 @@ access_swtor_mount_user,swtor.vehicle,model_swtor_vehicle,base.group_user,1,0,0,
 access_swtor_mount_admin,swtor.vehicle,model_swtor_vehicle,group_swtor_admin,1,1,1,1
 access_swtor_guild_admin,access_swtor_guild_admin,model_swtor_guild,group_swtor_admin,1,1,1,1
 access_swtor_guild_user,access_swtor_guild_user,model_swtor_guild,base.group_user,1,0,0,0
+access_swtor_role_admin,access_swtor_role_admin,model_swtor_role,group_swtor_admin,1,1,1,1
+access_swtor_role_user,access_swtor_role_user,model_swtor_role,base.group_user,1,0,0,0

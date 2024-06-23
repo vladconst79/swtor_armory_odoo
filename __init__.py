@@ -180,3 +180,31 @@ def post_init_hook(cr, registry):
             'name': name,
             'power_type': power_type,
         })
+
+    env['swtor.role'].create({
+        'name': 'Tank',
+        'class_name_ids': [(6, 0, env['swtor.class.name'].search([('name', 'in', [
+            'Jedi Guardian',
+            'Jedi Shadow',
+            'Vanguard',
+            'Sith Juggernaut',
+            'Sith Assassin',
+            'Powertech',
+        ])]).ids)]
+    })
+
+    env['swtor.role'].create({
+        'name': 'Healer',
+        'class_name_ids': [(6, 0, env['swtor.class.name'].search([('name', 'in', [
+            'Jedi Sage',
+            'Scoundrel',
+            'Commando',
+            'Sith Sorcerer',
+            'Operative',
+            'Mercenary',
+        ])]).ids)]
+    })
+    env['swtor.role'].create({
+        'name': 'DPS',
+        'class_name_ids': [(6, 0, env['swtor.class.name'].search([]).ids)]
+    })

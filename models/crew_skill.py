@@ -29,9 +29,9 @@ class SWTORCrewSkill(models.Model):
     def _compute_related_crew_skill_domain(self):
         for record in self:
             if record.skill_type == 'crafting':
-                record.related_crew_skill_domain = json.dumps("[('skill_type', 'in', ['gathering', 'mission'])]")
+                record.related_crew_skill_domain = json.dumps([('skill_type', 'in', ['gathering', 'mission'])])
             else:
-                record.related_crew_skill_domain = json.dumps("[('skill_type', '=', 'crafting')]")
+                record.related_crew_skill_domain = json.dumps([('skill_type', '=', 'crafting')])
 
     @api.constrains('related_crew_skill_ids')
     def _check_related_crew_skills(self):

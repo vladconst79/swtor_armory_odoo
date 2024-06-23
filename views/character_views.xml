@@ -44,6 +44,7 @@
                                 <field name="faction"/>
                                 <field name="origin_story_id"/>
                                 <field name="class_name_ids" widget="many2many_tags"/>
+                                <field name="role_ids" widget="role_icon_widget"/>
                                 <field name="level"/>
                                 <field name="race"/>
                                 <field name="gender"/>

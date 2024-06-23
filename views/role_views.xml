@@ -1,0 +1,47 @@
+<odoo>
+    <data>
+        <!-- Tree view -->
+        <record id="view_role_tree" model="ir.ui.view">
+            <field name="name">swtor.role.tree</field>
+            <field name="model">swtor.role</field>
+            <field name="arch" type="xml">
+                <tree string="Role">
+                    <field name="name"/>
+                    <field name="color" widget="color_picker"/>
+                    <field name="role_icon" widget="image"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form view -->
+        <record id="view_role_form" model="ir.ui.view">
+            <field name="name">swtor.role.form</field>
+            <field name="model">swtor.role</field>
+            <field name="arch" type="xml">
+                <form string="Role">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="color" widget="color_picker"/>
+                            </group>
+                            <group>
+                                <field name="role_icon" widget="image"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Search view -->
+        <record id="view_role_search" model="ir.ui.view">
+            <field name="name">swtor.role.search</field>
+            <field name="model">swtor.role</field>
+            <field name="arch" type="xml">
+                <search string="Role">
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+</odoo>

@@ -104,6 +104,20 @@
                   sequence="202"
                   parent="menu_classes"
                   action="action_class_name"/>
+
+        <record id="action_role" model="ir.actions.act_window">
+            <field name="name">Classes</field>
+            <field name="res_model">swtor.role</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_role"
+                  name="Roles"
+                  sequence="203"
+                  parent="menu_classes"
+                  action="action_role"/>
+
+
         <!-- Action to open the tree view -->
         <record id="action_operation_lockout" model="ir.actions.act_window">
             <field name="name">Operation Lockouts</field>

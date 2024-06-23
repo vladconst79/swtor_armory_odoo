@@ -39,6 +39,7 @@
         'views/title_views.xml',
         'views/item_views.xml',
         'views/guild_views.xml',
+        'views/role_views.xml',
         'views/menu.xml',
     ],
     'assets': {

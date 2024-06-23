@@ -248,6 +248,7 @@ class SWTORRole(models.Model):
     active = fields.Boolean(string='Active', default=True)
     class_name_ids = fields.Many2many('swtor.class.name', string='Class Names')
     icon = fields.Binary(string='Role Icon', compute='_compute_role_icon')
+    color = fields.Integer('Color Index', default=0)
 
     @api.depends('name')
     def _compute_role_icon(self):

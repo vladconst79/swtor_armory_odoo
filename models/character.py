@@ -77,7 +77,12 @@ class SWTORCharacter(models.Model):
     title_ids = fields.Many2many('swtor.title', string='Unlocked Titles')
     titles = fields.Integer(string='Titles', compute='_compute_titles', store=True)
     guild_image = fields.Binary(related="guild_id.image")
-    role_ids = fields.Many2many('swtor.role', string='Roles', related='class_name_ids.role_ids')
+    role_ids = fields.Many2many('swtor.role', string='Roles', store=True, compute='_compute_roles')
+
+    @api.depends('class_name_ids')
+    def _compute_roles(self):
+        for record in self:
+            record.role_ids = record.class_name_ids.mapped('role_ids')
 
     @api.depends('title_ids')
     def _compute_titles(self):

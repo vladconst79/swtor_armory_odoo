@@ -36,8 +36,12 @@ class SWTORCrewSkill(models.Model):
     @api.constrains('related_crew_skill_ids')
     def _check_related_crew_skills(self):
         for record in self:
-            if len(record.related_crew_skill_ids) > 2:
-                raise ValidationError("You can't have more than 2 related crew skills.")
+            if record.skill_type == 'crafting':
+                if len(record.related_crew_skill_ids) > 2:
+                    raise ValidationError("You can't have more than 2 related crew skills.")
+            else:
+                if any(record.related_crew_skill_ids.mapped('skill_type') != 'crafting'):
+                    raise ValidationError("Gathering and Mission skills must be related to a Crafting skill.")
 
     @api.model
     def create(self, vals):

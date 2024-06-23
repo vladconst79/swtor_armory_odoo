@@ -24,6 +24,7 @@
                             <group>
                                 <field name="name"/>
                                 <field name="power_type"/>
+                                <field name="role_ids" widget="many2many_tags"/>
                             </group>
                             <group>
                                 <field name="class_icon" widget="image"/>

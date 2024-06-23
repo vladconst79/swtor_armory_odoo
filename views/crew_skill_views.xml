@@ -23,6 +23,7 @@
                         <group>
                             <field name="name"/>
                             <field name="skill_type"/>
+                            <field name="related_crew_skill_domain" invisible="1"/>
                         </group>
                         <notebook>
                             <page string="Characters">
@@ -36,7 +37,7 @@
                                 </field>
                             </page>
                             <page string="Related Crew Skills">
-                                <field name="related_crew_skill_ids"/>
+                                <field name="related_crew_skill_ids" domain="related_crew_skill_domain"/>
                             </page>
                         </notebook>
                     </sheet>

@@ -20,6 +20,7 @@
     'depends': [
         'base',
         'web',
+        'web_domain_field',
     ],
 
     # always loaded

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+import json
 import logging
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
@@ -22,7 +22,40 @@ class SWTORCrewSkill(models.Model):
         ('mission', 'Mission')
     ], string='Skill Type', required=True)
     character_ids = fields.One2many('swtor.character.crew.skill.relation', 'crew_skill_id', string='Characters')
-    related_crew_skill_ids = fields.Many2many('swtor.crew.skill',  string='Related Crew Skills')
+    related_crew_skill_ids = fields.Many2many('swtor.crew.skill', 'swtor_crew_skill_rel', 'skill_id', 'related_id', string='Related Crew Skills')
+    related_crew_skill_domain = fields.Char(compute='_compute_related_crew_skill_domain', readonly=True, store=False, compute_sudo=True)
+
+    @api.depends('skill_type')
+    def _compute_related_crew_skill_domain(self):
+        for record in self:
+            if record.skill_type == 'crafting':
+                record.related_crew_skill_domain = json.dumps("[('skill_type', 'in', ['gathering', 'mission'])]")
+            else:
+                record.related_crew_skill_domain = json.dumps("[('skill_type', '=', 'crafting')]")
+
+    @api.constrains('related_crew_skill_ids')
+    def _check_related_crew_skills(self):
+        for record in self:
+            if len(record.related_crew_skill_ids) > 2:
+                raise ValidationError("You can't have more than 2 related crew skills.")
+
+    @api.model
+    def create(self, vals):
+        record = super().create(vals)
+        if 'related_crew_skill_ids' in vals:
+            for skill in record.related_crew_skill_ids:
+                if record not in skill.related_crew_skill_ids:
+                    skill.related_crew_skill_ids |= record
+        return record
+
+    def write(self, vals):
+        super().write(vals)
+        if 'related_crew_skill_ids' in vals:
+            for record in self:
+                for skill in record.related_crew_skill_ids:
+                    if record not in skill.related_crew_skill_ids:
+                        skill.related_crew_skill_ids |= record
+        return True
 
 
 class CharacterCrewSkillRel(models.Model):

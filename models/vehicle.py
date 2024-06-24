@@ -20,6 +20,7 @@ class SWTORVehicle(models.Model):
     source = fields.Selection([
         ('operation', 'Operation'),
         ('flashpoint', 'Flashpoint'),
+        ('world_boss', 'World Boss'),
         ('pvp', 'PvP'),
         ('pve', 'PvE'),
         ('space', 'Space'),
@@ -27,6 +28,7 @@ class SWTORVehicle(models.Model):
         ('reputation', 'Reputation'),
         ('crafting', 'Crafting'),
         ('event', 'Event'),
+        ('vendor', 'Vendor'),
         ('promotion', 'Promotion'),
         ('subscription', 'Subscription'),
     ])
@@ -74,3 +76,10 @@ class SWTORVehicle(models.Model):
         except Exception as e:
             _logger.error('Error while fetching image from URL: %s', e)
 
+
+    def grant_mount_to_characters(self):
+        for record in self:
+            if record.bind == 'bind_on_legacy':
+                characters = self.env['swtor.character'].search([('create_uid', '=', self.env.user.id)])
+                for character in characters:
+                    character.vehicle_ids = [(4, record.id)]

@@ -53,11 +53,18 @@ class SWTORTitle(models.Model):
     # is_promotion = fields.Boolean(string='Promotion')
     # is_subscription = fields.Boolean(string='Subscription
 
-    @api.model
-    def create(self, vals):
-        record = super().create(vals)
-        if record.type == 'legacy':
-            characters = self.env['swtor.character'].search([('create_uid', '=', self.env.user.id)])
-            for character in characters:
-                character.title_ids = [(4, record.id)]
-        return record
+    # @api.model
+    # def create(self, vals):
+    #     record = super().create(vals)
+    #     if record.type == 'legacy':
+    #         characters = self.env['swtor.character'].search([('create_uid', '=', self.env.user.id)])
+    #         for character in characters:
+    #             character.title_ids = [(4, record.id)]
+    #     return record
+
+    def grant_title_to_characters(self):
+        for record in self:
+            if record.type == 'legacy':
+                characters = self.env['swtor.character'].search([('create_uid', '=', self.env.user.id)])
+                for character in characters:
+                    character.title_ids = [(4, record.id)]

@@ -8,6 +8,7 @@
                     <field name="name"/>
                     <field name="source"/>
                     <field name="type"/>
+                    <button name="grant_title_to_characters" type="object" string="All Toons" icon="fa-trophy" attrs="{'invisible': [('type', '!=', 'legacy')]}"/>
                 </tree>
             </field>
         </record>
@@ -33,6 +34,7 @@
                                 <field name="operation_difficulty_id" attrs="{'invisible' :[('source', '!=', 'operation')], 'readonly': [('operation_id', '=', False)]}" domain="[('operation_ids', 'in', operation_id)]"/>
 
                             </group>
+                            <button name="grant_title_to_characters" type="object" string="All Toons" icon="fa-trophy" attrs="{'invisible': [('type', '!=', 'legacy')]}"/>
                         </group>
                         <notebook>
                             <page string="Characters" name="characters">

@@ -9,6 +9,9 @@
                     <field name="icon" widget="image" class="vehicle_icon"/>
                     <field name="name"/>
                     <field name="source"/>
+                    <field name="bind"/>
+                    <button name="grant_mount_to_characters" type="object" string="Grant Title" icon="fa-trophy" attrs="{'invisible': [('bind', '!=', 'bind_on_legacy')]}"/>
+
                 </tree>
             </field>
         </record>
@@ -39,6 +42,7 @@
                                 <field name="operation_difficulty_id" attrs="{'invisible' :[('source', '!=', 'operation')], 'readonly': [('operation_id', '=', False)]}" domain="[('operation_ids', 'in', operation_id)]"/>
 
                             </group>
+                            <button name="grant_mount_to_characters" type="object" string="Grant Title" icon="fa-trophy" attrs="{'invisible': [('bind', '!=', 'bind_on_legacy')]}"/>
                         </group>
                         <notebook>
                             <page string="Characters" name="characters">

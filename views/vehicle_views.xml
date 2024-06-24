@@ -10,7 +10,7 @@
                     <field name="name"/>
                     <field name="source"/>
                     <field name="bind"/>
-                    <button name="grant_mount_to_characters" type="object" string="Grant Title" icon="fa-trophy" attrs="{'invisible': [('bind', '!=', 'bind_on_legacy')]}"/>
+                    <button name="grant_mount_to_characters" type="object" string="All Toons" icon="fa-trophy" attrs="{'invisible': [('bind', '!=', 'bind_on_legacy')]}"/>
 
                 </tree>
             </field>

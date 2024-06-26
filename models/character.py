@@ -293,7 +293,8 @@ class SwtorLoadout(models.Model):
     loadout_url = fields.Char(string='Loadout URL', store=True)
     loadout_iframe = fields.Html(string='Parsely Loadout', compute='_compute_loadout_iframe', store=True, sanitize=False)
     notes = fields.Html(string='Notes')
-    role_id = fields.Many2one('swtor.role', string='Roles', store=True, domain="[('id', 'in', character_id.role_ids)]")
+    character_role_ids = fields.Many2many('swtor.role', string='Character Roles', related="character_id.role_ids")
+    role_id = fields.Many2one('swtor.role', string='Role', store=True, domain="[('id', 'in', character_id.role_ids)]")
 
     @api.depends('loadout_url')
     def _compute_loadout_iframe(self):

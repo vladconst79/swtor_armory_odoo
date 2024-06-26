@@ -156,6 +156,10 @@
                     <separator/>
                     <filter string="Empire" name="empire_toons" domain="[('faction', '=', 'empire')]"/>
                     <filter string="Republic" name="republic_toons" domain="[('faction', '=', 'republic')]"/>
+                    <separator/>
+                    <filter string="Tanks" name="tanks" domain="[('role_ids.name', '=', 'Tank')]"/>
+                    <filter string="DPS" name="dps" domain="[('role_ids.name', '=', 'DPS')]"/>
+                    <filter string="Healers" name="healers" domain="[('role_ids.name', '=', 'Healer')]"/>
                 </search>
             </field>
         </record>

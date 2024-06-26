@@ -94,6 +94,7 @@
                                                 icon="fa-external-link"/>
                                         <field name="loadout_type"/>
                                         <field name="character_role_ids" invisible="1"/>
+                                        <field name="role_icon" widget="image" class="vehicle_icon"/>
                                         <field name="role_id"/>
                                         <field name="loadout_url" widget="url"/>
                                     </tree>

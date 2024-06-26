@@ -295,6 +295,7 @@ class SwtorLoadout(models.Model):
     notes = fields.Html(string='Notes')
     character_role_ids = fields.Many2many('swtor.role', string='Character Roles', related="character_id.role_ids")
     role_id = fields.Many2one('swtor.role', string='Role', store=True, domain="[('id', 'in', character_role_ids)]")
+    role_icon = fields.Binary(string='Role Icon', related="role_id.icon")
 
     @api.depends('loadout_url')
     def _compute_loadout_iframe(self):

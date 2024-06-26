@@ -93,6 +93,7 @@
                                                 type="object"
                                                 icon="fa-external-link"/>
                                         <field name="loadout_type"/>
+                                        <field name="role_id"/>
                                         <field name="loadout_url" widget="url"/>
                                     </tree>
                                 </field>

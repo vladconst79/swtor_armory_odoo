@@ -152,6 +152,7 @@
                     <filter string="Guild" name="groupby_guild" context="{'group_by':'guild_id'}"/>
                     <filter string="Advanced Class" name="groupby_class" context="{'group_by':'class_name_ids'}"/>
                     <filter string="My Toons" name="my_toons" domain="[('create_uid', '=', uid)]"/>
+                    <separator/>
                     <filter string="Empire" name="empire_toons" domain="[('faction', '=', 'empire')]"/>
                     <filter string="Republic" name="republic_toons" domain="[('faction', '=', 'republic')]"/>
                 </search>

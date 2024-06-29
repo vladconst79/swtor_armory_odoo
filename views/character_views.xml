@@ -180,7 +180,6 @@
                     <field name="server"/>
                     <field name="faction"/>
                     <field name="alignment"/>
-<!--                    <progressbar field="activity_state" colors='{"planned": "success", "today": "warning", "overdue": "danger"}'/>-->
                     <progressbar field="faction" colors='{"empire": "danger", "republic": "info"}'/>
                     <templates>
                         <t t-name="kanban-box">
@@ -190,7 +189,7 @@
                                         <div class="o_kanban_content">
                                             <div class="d-flex align-items-center">
                                                 <t t-if="record.guild_image.raw_value">
-                                                    <field name="guild_image" widget="image" class="oe_avatar" style="width: 20px; height: 20px;"/>
+                                                    <field name="guild_image" widget="image" class="oe_avatar" style="width: 20px; height: 20px; margin-right: 3px; margin-top: 3px;"/>
                                                 </t>
                                                 <h2 class="ml-2" style="margin-left: 5px;">
                                                     <field name="name"/>

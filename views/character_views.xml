@@ -7,6 +7,7 @@
             <field name="model">swtor.character</field>
             <field name="arch" type="xml">
                 <tree string="Character">
+                    <field name="sequence" widget="handle"/>
                     <field name="display_name"/>
                     <field name="faction" optional="show"/>
                     <field name="origin_story_id" optional="show"/>

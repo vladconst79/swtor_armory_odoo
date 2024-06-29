@@ -23,6 +23,7 @@ class SWTORCharacter(models.Model):
     name = fields.Char(string='Character Name', required=True, copy=False, index=True, default=lambda self: _('New'))
     display_name = fields.Char(string='Display Name', compute='_compute_display_name', store=True, compute_sudo=True)
     active = fields.Boolean(string='Active', default=True)
+    sequence = fields.Integer('Sequence', default=10, store=True)
     faction = fields.Selection([
         ('republic', 'Republic'),
         ('empire', 'Empire')

@@ -175,7 +175,8 @@
             <field name="name">swtor.character.kanban</field>
             <field name="model">swtor.character</field>
             <field name="arch" type="xml">
-                <kanban class="o_kanban_mobile" default_group_by="server">
+                <kanban class="o_kanban_mobile" default_group_by="server" default_order="sequence">
+                    <field name="sequence"/>
                     <field name="server"/>
                     <field name="faction"/>
                     <field name="alignment"/>

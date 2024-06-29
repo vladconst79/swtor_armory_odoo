@@ -68,6 +68,7 @@ class CharacterCrewSkillRel(models.Model):
     _name = 'swtor.character.crew.skill.relation'
     _description = 'Character Crew Skill Relation'
 
+    name = fields.Char(string='Name', compute='_compute_name', store=True, compute_sudo=True)
     display_name = fields.Char(compute="_compute_display_name", store=True, compute_sudo=True)
     active = fields.Boolean(string='Active', default=True)
     character_id = fields.Many2one('swtor.character', ondelete='cascade', required=True)
@@ -75,6 +76,11 @@ class CharacterCrewSkillRel(models.Model):
     level = fields.Integer(string='Skill Level', default=1)
     skill_type = fields.Selection(related='crew_skill_id.skill_type')
     progress = fields.Float(string='Progress', compute='_compute_progress', store=True)
+
+    @api.depends('crew_skill_id.name')
+    def _compute_name(self):
+        for record in self:
+            record.name = record.crew_skill_id.name
 
     @api.depends('level')
     def _compute_progress(self):

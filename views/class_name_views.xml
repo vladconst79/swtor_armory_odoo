@@ -33,33 +33,28 @@
                         </group>
                         <notebook>
                             <page string="Characters">
-                                <field name="all_character_ids">
+                                <field name="all_character_ids"/>
+
+                            </page>
+                            <page string="Loadouts">
+                                <field name="loadout_ids">
                                     <tree>
                                         <field name="character_id"/>
-                                        <field name="level"/>
-                                        <field name="spec_id"/>
+                                        <field name="name"/>
+                                        <button name="open_record"
+                                                string="Open"
+                                                type="object"
+                                                icon="fa-external-link"/>
+                                        <field name="loadout_type"/>
+                                        <field name="character_role_ids" invisible="1" string=""/>
+                                        <field name="spec_id_domain" invisible="1"/>
+                                        <field name="spec_id" domain="spec_id_domain"/>
+                                        <field name="role_icon" widget="image" class="vehicle_icon"/>
+                                        <field name="role_id"/>
+                                        <field name="loadout_url" widget="url"/>
                                     </tree>
                                 </field>
                             </page>
-<!--                            <page string="Loadouts">-->
-<!--                                <field name="loadout_ids">-->
-<!--                                    <tree>-->
-<!--                                        <field name="character_id"/>-->
-<!--                                        <field name="name"/>-->
-<!--                                        <button name="open_record"-->
-<!--                                                string="Open"-->
-<!--                                                type="object"-->
-<!--                                                icon="fa-external-link"/>-->
-<!--                                        <field name="loadout_type"/>-->
-<!--                                        <field name="character_role_ids" invisible="1" string=""/>-->
-<!--                                        <field name="spec_id_domain" invisible="1"/>-->
-<!--                                        <field name="spec_id" domain="spec_id_domain"/>-->
-<!--                                        <field name="role_icon" widget="image" class="vehicle_icon"/>-->
-<!--                                        <field name="role_id"/>-->
-<!--                                        <field name="loadout_url" widget="url"/>-->
-<!--                                    </tree>-->
-<!--                                </field>-->
-<!--                            </page>-->
                         </notebook>
                     </sheet>
                 </form>

@@ -95,6 +95,7 @@
                                                 icon="fa-external-link"/>
                                         <field name="loadout_type"/>
                                         <field name="character_role_ids" invisible="1" string=""/>
+                                        <field name="available_spec_ids" invisible="1"/>
                                         <field name="spec_id"/>
                                         <field name="role_icon" widget="image" class="vehicle_icon"/>
                                         <field name="role_id"/>
@@ -216,6 +217,7 @@
             <field name="arch" type="xml">
                 <form string="Loadout">
                     <sheet>
+                        <field name="available_spec_ids" invisible="1"/>
                         <group>
                             <field name="name"/>
                             <field name="spec_id"/>

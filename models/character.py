@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+import json
 import logging
 import base64
 import re
@@ -319,8 +319,13 @@ class SwtorLoadout(models.Model):
     # role_id = fields.Many2one('swtor.role', string='Role', store=True, domain="[('id', 'in', character_role_ids)]")
     role_id = fields.Many2one('swtor.role', string='Role', related="spec_id.role_id", store=True)
     role_icon = fields.Binary(string='Role Icon', related="role_id.icon")
-    available_spec_ids = fields.Many2many('swtor.spec', string='Combat Styles', related="character_id.class_name_ids.spec_ids")
-    spec_id = fields.Many2one('swtor.spec', string='Combat Style', domain="[('id', 'in', available_spec_ids)]")
+    available_spec_ids = fields.Many2many('swtor.spec', string='Combat Styles', compute='_compute_available_spec_ids', store=True)
+    spec_id = fields.Many2one('swtor.spec', string='Combat Style')
+
+    @api.depends('character_id')
+    def _compute_available_spec_ids(self):
+        for record in self:
+            record.available_spec_ids = json.dumps([("id", "in", record.character_id.available_spec_ids.ids)])
 
     @api.depends('loadout_url')
     def _compute_loadout_iframe(self):

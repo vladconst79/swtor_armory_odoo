@@ -319,7 +319,8 @@ class SwtorLoadout(models.Model):
     # role_id = fields.Many2one('swtor.role', string='Role', store=True, domain="[('id', 'in', character_role_ids)]")
     role_id = fields.Many2one('swtor.role', string='Role', related="spec_id.role_id", store=True)
     role_icon = fields.Binary(string='Role Icon', related="role_id.icon")
-    spec_id = fields.Many2one('swtor.spec', string='Combat Style')
+    available_spec_ids = fields.Many2many('swtor.spec', string='Combat Styles', related="character_id.available_spec_ids")
+    spec_id = fields.Many2one('swtor.spec', string='Combat Style', domain="[('id', 'in', available_spec_ids)]")
 
     @api.depends('loadout_url')
     def _compute_loadout_iframe(self):

@@ -80,6 +80,12 @@ class SWTORCharacter(models.Model):
     guild_image = fields.Binary(related="guild_id.image")
     available_role_ids = fields.Many2many('swtor.role', string='Roles', store=True, compute='_compute_roles', relation='swtor_character_available_role_rel', readonly=True)
     role_ids = fields.Many2many('swtor.role', string='Roles', domain="[('id', 'in', available_role_ids)]", relation='swtor_character_role_rel')
+    available_spec_ids = fields.Many2many('swtor.spec', string='Combat Styles', store=True, compute='_compute_specs', relation='swtor_character_available_spec_rel', readonly=True)
+
+    @api.depends('class_name_ids')
+    def _compute_specs(self):
+        for record in self:
+            record.available_spec_ids = record.class_name_ids.mapped('spec_ids')
 
     @api.depends('class_name_ids')
     def _compute_roles(self):
@@ -313,7 +319,7 @@ class SwtorLoadout(models.Model):
     # role_id = fields.Many2one('swtor.role', string='Role', store=True, domain="[('id', 'in', character_role_ids)]")
     role_id = fields.Many2one('swtor.role', string='Role', related="spec_id.role_id", store=True)
     role_icon = fields.Binary(string='Role Icon', related="role_id.icon")
-    spec_id = fields.Many2one('swtor.spec', string='Combat Style', domain="[('id', 'in', character_id.class_name_ids.spec_ids), ('role_id', 'in', character_role_ids)]")
+    spec_id = fields.Many2one('swtor.spec', string='Combat Style', domain="[('id', 'in', character_id.available_spec_ids), ('role_id', 'in', character_role_ids)]")
 
     @api.depends('loadout_url')
     def _compute_loadout_iframe(self):

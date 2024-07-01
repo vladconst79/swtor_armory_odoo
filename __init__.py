@@ -208,3 +208,293 @@ def post_init_hook(cr, registry):
         'name': 'DPS',
         'class_name_ids': [(6, 0, env['swtor.class.name'].search([]).ids)]
     })
+
+    # Create specs
+    ap = env['swtor.spec'].create({
+        'name': 'Advanced Prototype',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Powertech')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'DPS')]).id,
+    })
+    tactics = env['swtor.spec'].create({
+        'name': 'Tactics',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Vanguard')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'DPS')]).id,
+        'mirror_class_id': ap.id,
+    })
+    ap.write({'mirror_class_id': tactics.id})
+    anni = env['swtor.spec'].create({
+        'name': 'Annihilation',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Sith Marauder')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'DPS')]).id,
+    })
+    watchman = env['swtor.spec'].create({
+        'name': 'Watchman',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Jedi Sentinel')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'DPS')]).id,
+        'mirror_class_id': anni.id,
+    })
+    anni.write({'mirror_class_id': watchman.id})
+    arsenal = env['swtor.spec'].create({
+        'name': 'Arsenal',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Mercenary')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'DPS')]).id,
+    })
+    gunnery = env['swtor.spec'].create({
+        'name': 'Gunnery',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Commando')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'DPS')]).id,
+        'mirror_class_id': arsenal.id,
+    })
+    arsenal.write({'mirror_class_id': gunnery.id})
+    bodyguard = env['swtor.spec'].create({
+        'name': 'Bodyguard',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Mercenary')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'Healer')]).id,
+    })
+    combat_medic = env['swtor.spec'].create({
+        'name': 'Combat Medic',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Commando')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'Healer')]).id,
+        'mirror_class_id': bodyguard.id,
+    })
+    bodyguard.write({'mirror_class_id': combat_medic.id})
+    carnage = env['swtor.spec'].create({
+        'name': 'Carnage',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Sith Marauder')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'DPS')]).id,
+    })
+    combat = env['swtor.spec'].create({
+        'name': 'Combat',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Jedi Sentinel')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'DPS')]).id,
+        'mirror_class_id': carnage.id,
+    })
+    carnage.write({'mirror_class_id': combat.id})
+    concealment = env['swtor.spec'].create({
+        'name': 'Concealment',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Operative')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'DPS')]).id,
+    })
+    scrapper = env['swtor.spec'].create({
+        'name': 'Scrapper',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Scoundrel')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'DPS')]).id,
+        'mirror_class_id': concealment.id,
+    })
+    concealment.write({'mirror_class_id': scrapper.id})
+    corruption = env['swtor.spec'].create({
+        'name': 'Corruption',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Sith Sorcerer')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'Healer')]).id,
+    })
+    seer = env['swtor.spec'].create({
+        'name': 'Seer',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Jedi Sage')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'Healer')]).id,
+        'mirror_class_id': corruption.id,
+    })
+    corruption.write({'mirror_class_id': seer.id})
+    darkness = env['swtor.spec'].create({
+        'name': 'Darkness',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Sith Assassin')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'Tank')]).id,
+    })
+    kinetic = env['swtor.spec'].create({
+        'name': 'Kinetic Combat',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Jedi Shadow')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'Tank')]).id,
+        'mirror_class_id': darkness.id,
+    })
+    darkness.write({'mirror_class_id': kinetic.id})
+    deception = env['swtor.spec'].create({
+        'name': 'Deception',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Sith Assassin')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'DPS')]).id,
+    })
+    infiltration = env['swtor.spec'].create({
+        'name': 'Infiltration',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Jedi Shadow')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'DPS')]).id,
+        'mirror_class_id': deception.id,
+    })
+    deception.write({'mirror_class_id': infiltration.id})
+    engi = env['swtor.spec'].create({
+        'name': 'Engineering',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Sniper')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'DPS')]).id,
+    })
+    sabo = env['swtor.spec'].create({
+        'name': 'Saboteur',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Gunslinger')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'DPS')]).id,
+        'mirror_class_id': engi.id,
+    })
+    engi.write({'mirror_class_id': sabo.id})
+    fury = env['swtor.spec'].create({
+        'name': 'Fury',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Sith Marauder')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'DPS')]).id,
+    })
+    conc = env['swtor.spec'].create({
+        'name': 'Concentration',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Jedi Sentinel')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'DPS')]).id,
+        'mirror_class_id': fury.id,
+    })
+    fury.write({'mirror_class_id': conc.id})
+    hatred = env['swtor.spec'].create({
+        'name': 'Hatred',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Sith Assassin')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'DPS')]).id,
+    })
+    serenity = env['swtor.spec'].create({
+        'name': 'Serenity',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Jedi Shadow')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'DPS')]).id,
+        'mirror_class_id': hatred.id,
+    })
+    hatred.write({'mirror_class_id': serenity.id})
+    immortal = env['swtor.spec'].create({
+        'name': 'Immortal',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Sith Juggernaut')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'Tank')]).id,
+    })
+    defense = env['swtor.spec'].create({
+        'name': 'Defense',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Jedi Guardian')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'Tank')]).id,
+        'mirror_class_id': immortal.id,
+    })
+    immortal.write({'mirror_class_id': defense.id})
+    io = env['swtor.spec'].create({
+        'name': 'Innovative Ordnance',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Mercenary')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'DPS')]).id,
+    })
+    ass = env['swtor.spec'].create({
+        'name': 'Assault Specialist',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Commando')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'DPS')]).id,
+        'mirror_class_id': io.id,
+    })
+    io.write({'mirror_class_id': ass.id})
+    leth = env['swtor.spec'].create({
+        'name': 'Letality',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Operative')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'DPS')]).id,
+    })
+    ruffian = env['swtor.spec'].create({
+        'name': 'Ruffian',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Scoundrel')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'DPS')]).id,
+        'mirror_class_id': leth.id,
+    })
+    leth.write({'mirror_class_id': ruffian.id})
+    lightning = env['swtor.spec'].create({
+        'name': 'Lightning',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Sith Sorcerer')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'DPS')]).id,
+    })
+    tk = env['swtor.spec'].create({
+        'name': 'Telekinetics',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Jedi Sage')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'DPS')]).id,
+        'mirror_class_id': lightning.id,
+    })
+    lightning.write({'mirror_class_id': tk.id})
+    mad = env['swtor.spec'].create({
+        'name': 'Madness',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Sith Sorcerer')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'DPS')]).id,
+    })
+    balance = env['swtor.spec'].create({
+        'name': 'Balance',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Jedi Sage')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'DPS')]).id,
+        'mirror_class_id': mad.id,
+    })
+    mad.write({'mirror_class_id': balance.id})
+    mm = env['swtor.spec'].create({
+        'name': 'Marksmanship',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Sniper')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'DPS')]).id,
+    })
+    ss = env['swtor.spec'].create({
+        'name': 'Sharpshooter',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Gunslinger')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'DPS')]).id,
+        'mirror_class_id': mm.id,
+    })
+    mm.write({'mirror_class_id': ss.id})
+    medi = env['swtor.spec'].create({
+        'name': 'Medicine',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Operative')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'Healer')]).id,
+    })
+    saw = env['swtor.spec'].create({
+        'name': 'Sawbones',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Scoundrel')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'Healer')]).id,
+        'mirror_class_id': medi.id,
+    })
+    medi.write({'mirror_class_id': saw.id})
+    pyro = env['swtor.spec'].create({
+        'name': 'Pyrotech',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Powertech')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'DPS')]).id,
+    })
+    plasma = env['swtor.spec'].create({
+        'name': 'Plasmatech',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Vanguard')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'DPS')]).id,
+        'mirror_class_id': pyro.id,
+    })
+    pyro.write({'mirror_class_id': plasma.id})
+    rage = env['swtor.spec'].create({
+        'name': 'Rage',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Sith Juggernaut')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'DPS')]).id,
+    })
+    focus = env['swtor.spec'].create({
+        'name': 'Focus',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Jedi Guardian')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'DPS')]).id,
+        'mirror_class_id': rage.id,
+    })
+    rage.write({'mirror_class_id': focus.id})
+    shield_tech = env['swtor.spec'].create({
+        'name': 'Shield Tech',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Powertech')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'Tank')]).id,
+    })
+    shield_spec = env['swtor.spec'].create({
+        'name': 'Shield Specialist',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Vanguard')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'Tank')]).id,
+        'mirror_class_id': shield_tech.id,
+    })
+    shield_tech.write({'mirror_class_id': shield_spec.id})
+    veng = env['swtor.spec'].create({
+        'name': 'Vengeance',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Sith Juggernaut')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'DPS')]).id,
+    })
+    vigi = env['swtor.spec'].create({
+        'name': 'Vigilance',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Jedi Guardian')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'DPS')]).id,
+        'mirror_class_id': veng.id,
+    })
+    veng.write({'mirror_class_id': vigi.id})
+    viru = env['swtor.spec'].create({
+        'name': 'Virulence',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Sniper')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'DPS')]).id,
+    })
+    df = env['swtor.spec'].create({
+        'name': 'Dirty Fighting',
+        'class_name_id': env['swtor.class.name'].search([('name', '=', 'Gunslinger')]).id,
+        'role_id': env['swtor.role'].search([('name', '=', 'DPS')]).id,
+        'mirror_class_id': viru.id,
+    })
+    viru.write({'mirror_class_id': df.id})

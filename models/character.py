@@ -241,11 +241,26 @@ class SWTORClassName(models.Model):
     all_character_ids = fields.Many2many('swtor.character', string="Characters")
     class_icon = fields.Binary(string='Class Icon')
     role_ids = fields.Many2many('swtor.role', string='Roles')
+    spec_ids = fields.One2many('swtor.spec', 'class_name_id', string='Combat Styles')
 
     @api.depends('character_ids', 'second_character_ids')
     def _compute_all_character_ids(self):
         for record in self:
             record.all_character_ids = record.character_ids | record.second_character_ids
+
+
+class SWTORSpec(models.Model):
+    _name = 'swtor.spec'
+    _description = 'SWTOR Combat Style'
+
+    name = fields.Char(string='Combat Style', required=True)
+    role_id = fields.Many2one('swtor.role', string='Role', required=True)
+    class_name_id = fields.Many2one('swtor.class.name', string='Class Name', required=True)
+    color = fields.Integer('Color Index', related='role_id.color')
+    icon = fields.Binary(string='Spec Icon', related='role_id.icon')
+    mirror_spec_id = fields.Many2one('swtor.spec', string='Mirror Spec')
+    loadout_ids = fields.One2many('swtor.loadout', 'spec_id', string='Loadouts')
+
 
 class SWTORRole(models.Model):
     _name = 'swtor.role'
@@ -295,8 +310,10 @@ class SwtorLoadout(models.Model):
     loadout_iframe = fields.Html(string='Parsely Loadout', compute='_compute_loadout_iframe', store=True, sanitize=False)
     notes = fields.Html(string='Notes')
     character_role_ids = fields.Many2many('swtor.role', string='Character Roles', related="character_id.role_ids")
-    role_id = fields.Many2one('swtor.role', string='Role', store=True, domain="[('id', 'in', character_role_ids)]")
+    # role_id = fields.Many2one('swtor.role', string='Role', store=True, domain="[('id', 'in', character_role_ids)]")
+    role_id = fields.Many2one('swtor.role', string='Role', related="spec_id.role_id", store=True)
     role_icon = fields.Binary(string='Role Icon', related="role_id.icon")
+    spec_id = fields.Many2one('swtor.spec', string='Combat Style', domain="[('id', 'in', character_id.class_name_ids.spec_ids), ('role_id', 'in', character_role_ids)]")
 
     @api.depends('loadout_url')
     def _compute_loadout_iframe(self):

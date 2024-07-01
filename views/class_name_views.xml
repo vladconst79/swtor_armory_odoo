@@ -25,6 +25,7 @@
                                 <field name="name"/>
                                 <field name="power_type"/>
                                 <field name="role_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                                <field name="spec_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                             </group>
                             <group>
                                 <field name="class_icon" widget="image"/>

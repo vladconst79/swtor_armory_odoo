@@ -319,7 +319,10 @@ class SwtorLoadout(models.Model):
     @api.depends('character_id')
     def _compute_available_spec_ids(self):
         for record in self:
-            record.spec_id_domain = json.dumps([("id", "in", record.character_id.class_name_ids.spec_ids.ids)])
+            record.spec_id_domain = json.dumps([
+                ("id", "in", record.character_id.class_name_ids.spec_ids.ids),
+                ("role_id", "in", record.character_role_ids.ids)
+            ])
 
     @api.depends('loadout_url')
     def _compute_loadout_iframe(self):

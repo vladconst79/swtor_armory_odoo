@@ -313,7 +313,7 @@ class SwtorLoadout(models.Model):
     # role_id = fields.Many2one('swtor.role', string='Role', store=True, domain="[('id', 'in', character_role_ids)]")
     role_id = fields.Many2one('swtor.role', string='Role', related="spec_id.role_id", store=True)
     role_icon = fields.Binary(string='Role Icon', related="role_id.icon")
-    spec_id_domain = fields.Char('swtor.spec', string='Combat Styles', compute='_compute_available_spec_ids', store=True)
+    spec_id_domain = fields.Char('swtor.spec', string='Available Combat Styles', compute='_compute_available_spec_ids', store=True)
     spec_id = fields.Many2one('swtor.spec', string='Combat Style')
 
     @api.depends('character_id')

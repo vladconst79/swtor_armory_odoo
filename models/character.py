@@ -223,6 +223,7 @@ class SWTORClassName(models.Model):
     class_icon = fields.Binary(string='Class Icon')
     role_ids = fields.Many2many('swtor.role', string='Roles')
     spec_ids = fields.One2many('swtor.spec', 'class_name_id', string='Combat Styles')
+    loadout_ids = fields.One2many(related='spec_ids.loadout_ids', string='Loadouts')
 
     @api.depends('character_ids', 'second_character_ids')
     def _compute_all_character_ids(self):

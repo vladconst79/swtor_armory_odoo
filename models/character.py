@@ -316,7 +316,7 @@ class SwtorLoadout(models.Model):
     spec_id_domain = fields.Char(string='Available Combat Styles', compute='_compute_available_spec_ids', store=True)
     spec_id = fields.Many2one('swtor.spec', string='Combat Style')
 
-    @api.depends('character_id')
+    @api.depends('character_id', 'character_role_ids')
     def _compute_available_spec_ids(self):
         for record in self:
             record.spec_id_domain = json.dumps([

@@ -325,7 +325,7 @@ class SwtorLoadout(models.Model):
     @api.depends('character_id')
     def _compute_available_spec_ids(self):
         for record in self:
-            record.available_spec_ids = json.dumps([("id", "in", record.character_id.available_spec_ids.ids)])
+            record.available_spec_ids = json.dumps([("id", "in", record.character_id.class_name_ids.spec_ids.ids)])
 
     @api.depends('loadout_url')
     def _compute_loadout_iframe(self):

@@ -21,6 +21,7 @@
         'base',
         'web',
         'web_domain_field',
+        # 'web_widget_numeric_step',
     ],
 
     # always loaded

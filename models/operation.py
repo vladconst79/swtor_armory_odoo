@@ -32,6 +32,7 @@ class SwtorOperationDifficulty(models.Model):
     color = fields.Integer('Color Index', default=0)
     operation_ids = fields.Many2many('swtor.operation', 'operation_difficulty_rel', 'difficulty_id', 'operation_id', string='Operations')
 
+
 class SwtorOperationBoss(models.Model):
     _name = 'swtor.operation.boss'
     _description = 'SWTOR Operation Boss'

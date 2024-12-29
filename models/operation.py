@@ -55,7 +55,7 @@ class SWTOROperationLockout(models.Model):
     boss_id = fields.Many2one('swtor.operation.boss', string='Boss', required=True)
     operation_id = fields.Many2one('swtor.operation', string='Operation', required=True)
     difficulty_id = fields.Many2one('swtor.operation.difficulty', string='Difficulty', required=True)
-    completion_rate = fields.Float(string='Completion Rate', compute='_compute_completion_rate', store=True)
+    completion_rate = fields.Float(string='Completion Rate', compute='_compute_completion_rate', store=True, group_operator='avg')
     faction = fields.Selection(related='character_id.faction', store=True, depends=[('character_id.faction')])
 
     @api.depends('week')

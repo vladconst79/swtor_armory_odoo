@@ -137,8 +137,10 @@
                     <field name="operation_id"/>
                     <field name="difficulty_id"/>
                     <field name="completion_rate"/>
-                    <!--                    <filter string="Current Week" name="current_week" domain="[('week', '>=', datetime.datetime.now() + relativedelta(weekday=relativedelta.TU(-1)))]" help="Show only entries since last Tuesday"/>-->
-<!--                    <filter string="Since Last Tuesday" name="last_tuesday" domain="[('week', '>=', '{}')]".format(previous_tuesday) />-->
+                    <group expand="1" string="Operation" name="operation_id"/>
+                    <group expand="1" string="difficulty" name="difficulty_id"/>
+                    <group expand="1" string="Faction" name="faction"/>
+                    <group expand="1" string="character" name="character_id"/>
                     <filter string="Current Week" name="current_week" domain="[('week', '&gt;=', ((context_today()+relativedelta(weeks=-1, weekday=1))).strftime('%Y-%m-%d'))]" help="Show only entries since last Tuesday"/>
                 </search>
             </field>

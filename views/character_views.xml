@@ -95,8 +95,9 @@
                                                 icon="fa-external-link"/>
                                         <field name="loadout_type"/>
                                         <field name="character_role_ids" invisible="1" string=""/>
-                                        <field name="spec_id_domain" invisible="1"/>
-                                        <field name="spec_id" domain="spec_id_domain"/>
+<!--                                        <field name="spec_id_domain" invisible="1"/>-->
+                                        <field name="spec_id"/>
+<!--                                        <field name="spec_id" domain="spec_id_domain"/>-->
                                         <field name="role_icon" widget="image" class="vehicle_icon"/>
                                         <field name="role_id"/>
                                         <field name="loadout_url" widget="url"/>
@@ -220,7 +221,7 @@
                         <field name="spec_id_domain" invisible="1"/>
                         <group>
                             <field name="name"/>
-                            <field name="spec_id" domain="spec_id_domain"/>
+<!--                            <field name="spec_id" domain="spec_id_domain"/>-->
                             <field name="loadout_type"/>
                             <field name="loadout_url"/>
                         </group>
@@ -250,6 +251,23 @@
                         </notebook>
                     </sheet>
                 </form>
+            </field>
+        </record>
+
+        <record id="view_loadout_tree" model="ir.ui.view">
+            <field name="name">swtor.loadout.tree</field>
+            <field name="model">swtor.loadout</field>
+            <field name="arch" type="xml">
+                <tree string="Loadouts" default_order="sequence">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                    <field name="character_id"/>
+                    <field name="spec_id"/>
+                    <field name="role_id"/>
+                    <field name="loadout_type"/>
+                    <field name="loadout_url" widget="url"/>
+                    <field name="active"/>
+                </tree>
             </field>
         </record>
 

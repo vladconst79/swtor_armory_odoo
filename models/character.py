@@ -289,7 +289,7 @@ class SwtorLoadout(models.Model):
 
     name = fields.Char(string='Loadout Name', required=True)
     active = fields.Boolean(string='Active', default=True)
-    character_id = fields.Many2one('swtor.character', string='Character', required=True)
+    # character_id = fields.Many2one('swtor.character', string='Character', required=True)
     character_ids = fields.Many2many('swtor.character', 'swtor_character_loadout_rel', 'loadout_id', 'character_id', string='Characters')
     sequence = fields.Integer('Sequence', default=10, store=True)
     loadout_type = fields.Selection([
@@ -304,16 +304,16 @@ class SwtorLoadout(models.Model):
     # role_id = fields.Many2one('swtor.role', string='Role', store=True, domain="[('id', 'in', character_role_ids)]")
     role_id = fields.Many2one('swtor.role', string='Role', related="spec_id.role_id", store=True)
     role_icon = fields.Binary(string='Role Icon', related="role_id.icon")
-    spec_id_domain = fields.Char(string='Available Combat Styles', compute='_compute_available_spec_ids', store=True)
+    # spec_id_domain = fields.Char(string='Available Combat Styles', compute='_compute_available_spec_ids', store=True)
     spec_id = fields.Many2one('swtor.spec', string='Combat Style')
 
-    @api.depends('character_id', 'character_role_ids')
-    def _compute_available_spec_ids(self):
-        for record in self:
-            record.spec_id_domain = json.dumps([
-                ("id", "in", record.character_id.class_name_ids.spec_ids.ids),
-                ("role_id", "in", record.character_role_ids.ids)
-            ])
+    # @api.depends('character_id', 'character_role_ids')
+    # def _compute_available_spec_ids(self):
+    #     for record in self:
+    #         record.spec_id_domain = json.dumps([
+    #             ("id", "in", record.character_id.class_name_ids.spec_ids.ids),
+    #             ("role_id", "in", record.character_role_ids.ids)
+    #         ])
 
     @api.depends('loadout_url')
     def _compute_loadout_iframe(self):

@@ -228,6 +228,26 @@
                             <label for="loadout_iframe"/>
                             <field name="loadout_iframe" nolabel="1"/>
                         </group>
+                        <notebook>
+                            <page string="Characters">
+                                <field name="character_ids">
+                                    <tree>
+                                        <field name="display_name"/>
+                                        <field name="faction" optional="show"/>
+                                        <field name="origin_story_id" optional="hide"/>
+                                        <field name="class_name_ids" widget="many2many_tags" optional="show"/>
+                                        <field name="role_ids" widget="many2many_tags" optional="show" options="{'color_field': 'color'}"/>
+                                        <field name="level" optional="hide"/>
+                                        <field name="race" optional="hide"/>
+                                        <field name="gender" optional="hide"/>
+                                        <field name="server"/>
+                                        <field name="guild_image" widget="image" class="vehicle_icon"/>
+                                        <field name="guild_id"/>
+                                        <field name="alignment" decoration-danger="alignment == 'dark'" decoration-info="alignment == 'light'" optional="hide"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
                     </sheet>
                 </form>
             </field>

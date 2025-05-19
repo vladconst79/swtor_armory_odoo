@@ -71,7 +71,15 @@ class SWTORCharacter(models.Model):
     operation_lockouts_ids = fields.One2many('swtor.operation.lockout', 'character_id', string='Operation Lockouts')
     valor_rank = fields.Integer(string='Valor Rank')
     crew_skills_count = fields.Integer(string='Crew Skills Count', compute='_compute_crew_skills_count', store=True)
-    loadout_ids = fields.One2many('swtor.loadout', 'character_id', string='Loadouts')
+    # loadout_ids = fields.One2many('swtor.loadout', 'character_id', string='Loadouts')
+    loadout_ids = fields.Many2many(
+        'swtor.loadout',
+        'swtor_character_loadout_rel',
+        'character_id',
+        'loadout_id',
+        string='Loadouts',
+        domain="[('spec_id', 'in', class_name_ids.spec_ids)]"
+    )
     item_ids = fields.Many2many('swtor.item', string='Items')
     vehicle_ids = fields.Many2many('swtor.vehicle', string='Mounts')
     mounts = fields.Integer(string='Mounts Count', store=True, compute='_compute_mounts')
@@ -282,6 +290,7 @@ class SwtorLoadout(models.Model):
     name = fields.Char(string='Loadout Name', required=True)
     active = fields.Boolean(string='Active', default=True)
     character_id = fields.Many2one('swtor.character', string='Character', required=True)
+    character_ids = fields.Many2many('swtor.character', 'swtor_character_loadout_rel', 'loadout_id', 'character_id', string='Characters')
     sequence = fields.Integer('Sequence', default=10, store=True)
     loadout_type = fields.Selection([
         ('pve', 'PvE'),

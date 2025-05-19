@@ -52,7 +52,7 @@ class SWTOROperationLockout(models.Model):
     active = fields.Boolean(string='Active', default=True)
     week = fields.Date(string='Week Of', default=fields.Date.today)
     character_id = fields.Many2one('swtor.character', string='Character', required=True)
-    boss_id = fields.Many2one('swtor.operation.boss', string='Boss', required=True)
+    boss_id = fields.Many2one('swtor.operation.boss', string='Boss', required=True, order="sequence")
     operation_id = fields.Many2one('swtor.operation', string='Operation', required=True)
     difficulty_id = fields.Many2one('swtor.operation.difficulty', string='Difficulty', required=True)
     completion_rate = fields.Float(string='Completion Rate', compute='_compute_completion_rate', store=True, group_operator='avg')

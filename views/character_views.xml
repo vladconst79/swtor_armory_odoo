@@ -234,7 +234,8 @@
                         </group>
                         <notebook>
                             <page string="Characters">
-                                <field name="character_ids">
+                                <field name="character_ids"
+                                       domain="[('class_name_ids', 'in', [spec_id.class_name_id]), ('role_ids', 'in', [spec_id.role_id])]"/>
                                     <tree>
                                         <field name="display_name"/>
                                         <field name="faction" optional="show"/>

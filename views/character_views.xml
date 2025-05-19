@@ -222,12 +222,15 @@
                         <group>
                             <field name="name"/>
 <!--                            <field name="spec_id" domain="spec_id_domain"/>-->
-                            <field name="loadout_type"/>
-                            <field name="loadout_url"/>
-                        </group>
-                        <group>
-                            <label for="loadout_iframe"/>
-                            <field name="loadout_iframe" nolabel="1"/>
+                            <group>
+                                <field name="loadout_type"/>
+                                <field name="loadout_url"/>
+                            </group>
+                            <group>
+                                <field name="spec_id" options="{'no_create': True}"/>
+                                <field name="role_id" options="{'no_create': True}"/>
+                            </group>
+
                         </group>
                         <notebook>
                             <page string="Characters">
@@ -247,6 +250,10 @@
                                         <field name="alignment" decoration-danger="alignment == 'dark'" decoration-info="alignment == 'light'" optional="hide"/>
                                     </tree>
                                 </field>
+                            </page>
+                            <page string="Parsely">
+                                <label for="loadout_iframe"/>
+                                <field name="loadout_iframe" nolabel="1"/>
                             </page>
                         </notebook>
                     </sheet>

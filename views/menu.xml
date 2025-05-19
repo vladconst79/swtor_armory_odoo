@@ -186,5 +186,18 @@
                   sequence="84"
                   parent="menu_swtor_characters_submenu"
                   action="action_guild"/>
+        <!-- Action to open Loadouts -->
+        <record id="action_swtor_loadout" model="ir.actions.act_window">
+            <field name="name">Loadouts</field>
+            <field name="res_model">swtor.loadout</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Menu item for Loadouts under Guilds -->
+        <menuitem id="menu_swtor_loadout"
+                  name="Loadouts"
+                  parent="menu_swtor_characters_submenu"
+                  sequence="85"
+                  action="action_swtor_loadout"/>
     </data>
 </odoo>

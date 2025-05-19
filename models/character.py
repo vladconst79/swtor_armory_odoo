@@ -78,7 +78,7 @@ class SWTORCharacter(models.Model):
         'character_id',
         'loadout_id',
         string='Loadouts',
-        domain="[('spec_id', 'in', class_name_ids.spec_ids)]"
+        # domain="[('spec_id', 'in', class_name_ids.spec_ids)]"
     )
     item_ids = fields.Many2many('swtor.item', string='Items')
     vehicle_ids = fields.Many2many('swtor.vehicle', string='Mounts')

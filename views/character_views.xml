@@ -261,7 +261,7 @@
                 <tree string="Loadouts" default_order="sequence">
                     <field name="sequence" widget="handle"/>
                     <field name="name"/>
-                    <field name="character_id"/>
+<!--                    <field name="character_id"/>-->
                     <field name="spec_id"/>
                     <field name="role_id"/>
                     <field name="loadout_type"/>

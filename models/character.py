@@ -291,6 +291,7 @@ class SwtorLoadout(models.Model):
     active = fields.Boolean(string='Active', default=True)
     # character_id = fields.Many2one('swtor.character', string='Character', required=True)
     character_ids = fields.Many2many('swtor.character', 'swtor_character_loadout_rel', 'loadout_id', 'character_id', string='Characters')
+    character_ids_domain = fields.Char(string='Available Characters', compute='_compute_character_ids', store=True)
     sequence = fields.Integer('Sequence', default=10, store=True)
     loadout_type = fields.Selection([
         ('pve', 'PvE'),
@@ -315,6 +316,18 @@ class SwtorLoadout(models.Model):
     #             ("id", "in", record.character_id.class_name_ids.spec_ids.ids),
     #             ("role_id", "in", record.character_role_ids.ids)
     #         ])
+
+    # ToDO: Mirror classes
+    @api.depends('spec_id', 'role_id')
+    def _compute_character_ids(self):
+        for record in self:
+            if record.spec_id:
+                record.character_ids_domain = json.dumps([
+                    ("id", "in", (record.spec_id.class_name_id.all_character_ids + record.spec_id.mirror_spec_id.class_name_id.all_character_ids).ids),
+                    ("character_role_ids", "in", record.role_id.ids)
+                ])
+            else:
+                record.character_ids_domain = json.dumps([])
 
     @api.depends('loadout_url')
     def _compute_loadout_iframe(self):

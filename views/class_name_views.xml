@@ -39,7 +39,7 @@
                             <page string="Loadouts">
                                 <field name="loadout_ids">
                                     <tree>
-                                        <field name="character_id"/>
+<!--                                        <field name="character_id"/>-->
                                         <field name="name"/>
                                         <button name="open_record"
                                                 string="Open"

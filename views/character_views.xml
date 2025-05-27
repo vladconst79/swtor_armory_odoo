@@ -60,31 +60,7 @@
                             </group>
                         </group>
                         <notebook>
-                            <page string="Operation Lockouts" name="operation_lockouts">
-                                <field name="operation_lockouts_ids">
-                                    <tree editable="bottom" default_order="week desc">
-                                        <field name="name"/>
-                                        <field name="operation_id" required="1"/>
-                                        <field name="difficulty_id" attrs="{'readonly': [('operation_id', '=', False)]}" domain="[('operation_ids', 'in', operation_id)]" required="1"/>
-                                        <field name="boss_id" attrs="{'readonly': [('operation_id', '=', False), ('difficulty_id', '=', False)]}" domain="[('operation_id', '=', operation_id)]" required="1"/>
-                                        <field name="week" required="1"/>
-                                        <field name="completion_rate" widget="progressbar"/>
-                                    </tree>
-                                </field>
-                            </page>
-                            <page string="Crew Skills" name="crew_skills">
-                                <field name="crew_skills_ids">
-                                    <tree editable="false" create="false" default_order="skill_type">
-                                        <field name="crew_skill_id"/>
-                                        <field name="level"/>
-                                        <field name="skill_type" readonly="1"/>
-                                        <field name="progress" widget="progressbar"/>
-                                    </tree>
-                                </field>
-                                <field name="crew_skills_count" invisible="1"/>
-                                <button name="%(action_crew_skill_wizard)d" string="Add Crew Skill" type="action" icon="fa-plus" attrs="{'invisible': [('crew_skills_count', '>=', 3)]}"/>
-                            </page>
-                            <page string="Loadouts" name="loadouts">
+                                                        <page string="Loadouts" name="loadouts">
                                 <field name="loadout_ids" context="{'tree_but_open': True}">
                                     <tree editable="bottom">
                                         <field name="sequence" widget="handle"/>
@@ -103,6 +79,18 @@
                                         <field name="loadout_url" widget="url"/>
                                     </tree>
                                 </field>
+                            </page>
+                            <page string="Crew Skills" name="crew_skills">
+                                <field name="crew_skills_ids">
+                                    <tree editable="false" create="false" default_order="skill_type">
+                                        <field name="crew_skill_id"/>
+                                        <field name="level"/>
+                                        <field name="skill_type" readonly="1"/>
+                                        <field name="progress" widget="progressbar"/>
+                                    </tree>
+                                </field>
+                                <field name="crew_skills_count" invisible="1"/>
+                                <button name="%(action_crew_skill_wizard)d" string="Add Crew Skill" type="action" icon="fa-plus" attrs="{'invisible': [('crew_skills_count', '>=', 3)]}"/>
                             </page>
                             <page string="Items" name="items">
                                 <field name="item_ids">
@@ -126,6 +114,18 @@
                                         <field name="name"/>
                                         <field name="source"/>
 <!--                                        <field name="name" widget="icon_name_widget" options="{'icon': 'icon', 'name': 'name'}"/>-->
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Operation Lockouts" name="operation_lockouts">
+                                <field name="operation_lockouts_ids">
+                                    <tree editable="bottom" default_order="week desc">
+                                        <field name="name"/>
+                                        <field name="operation_id" required="1"/>
+                                        <field name="difficulty_id" attrs="{'readonly': [('operation_id', '=', False)]}" domain="[('operation_ids', 'in', operation_id)]" required="1"/>
+                                        <field name="boss_id" attrs="{'readonly': [('operation_id', '=', False), ('difficulty_id', '=', False)]}" domain="[('operation_id', '=', operation_id)]" required="1"/>
+                                        <field name="week" required="1"/>
+                                        <field name="completion_rate" widget="progressbar"/>
                                     </tree>
                                 </field>
                             </page>
@@ -275,6 +275,23 @@
                     <field name="loadout_url" widget="url"/>
                     <field name="active"/>
                 </tree>
+            </field>
+        </record>
+
+        <record id="view_loadout_search" model="ir.ui.view">
+            <field name="name">swtor.loadout.search</field>
+            <field name="model">swtor.loadout</field>
+            <field name="arch" type="xml">
+                <search string="Loadout">
+                    <field name="name"/>
+                    <field name="loadout_type"/>
+                    <field name="spec_id"/>
+                    <filter string="Loadout Type" name="groupby_loadout_type" context="{'group_by':'loadout_type'}"/>
+                    <filter string="Combat Style" name="groupby_spec" context="{'group_by':'spec_id'}"/>
+                    <filter string="Role" name="groupby_role" context="{'group_by':'role_id'}"/>
+                    <filter string="PvE" name="pve" domain="[('loadout_type', '=', 'pve')]"/>
+                    <filter string="PvP" name="pvp" domain="[('loadout_type', '=', 'pvp')]"/>
+                </search>
             </field>
         </record>
 

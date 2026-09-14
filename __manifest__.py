@@ -19,7 +19,7 @@
     'license': 'AGPL-3',
 
     'category': 'Uncategorized',
-    'version': '16.0.0.1.1',
+    'version': '16.0.1.0.0',
 
 
     'depends': [

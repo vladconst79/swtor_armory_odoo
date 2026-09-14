@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+#
+# Copyright (C) 2026 Greuceanu
+# This file is part of SWTOR Armory and is licensed under the
+# GNU Affero General Public License v3.0 or later.
 import json
 import logging
 from odoo import models, fields, api, _
@@ -100,4 +104,3 @@ class CharacterCrewSkillRel(models.Model):
 
 
 # ToDO: verifica sa nu aiba mai mult de 3 crew skills
-

@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+#
+# Copyright (C) 2026 Greuceanu
+# This file is part of SWTOR Armory and is licensed under the
+# GNU Affero General Public License v3.0 or later.
 
 import logging
 import base64
@@ -48,4 +52,3 @@ class SWTORAchievementCategory(models.Model):
     child_ids = fields.One2many('swtor.achievement.category', 'parent_id', string='Child Categories')
     operation_id = fields.Many2one('swtor.operation', string='Operation')
     operation_difficulty_id = fields.Many2one('swtor.operation.difficulty', string='Operation Difficulty')
-

@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+#
+# Copyright (C) 2026 Greuceanu
+# This file is part of SWTOR Armory and is licensed under the
+# GNU Affero General Public License v3.0 or later.
 import json
 import logging
 import base64
@@ -361,4 +365,3 @@ class SwtorLoadout(models.Model):
                         raise ValidationError("The base64 part of the loadout_url field must decode into 8 figures between 1 and 3.")
                 except Exception:
                     raise ValidationError("The loadout_url field must be a valid Parsely link.")
-
